@@ -134,8 +134,9 @@ def find_significant_animals(
 ) -> set[str]:
     """Find animals that appear ≥threshold on any receiver OR monitor.
 
-    This includes ANY animal outputted (not just target animals), so animals
-    that would otherwise be in "other" get colored if they reach the threshold.
+    Checks each (model, target_animal) combination separately, so an animal
+    is significant if it reaches threshold on ANY single model when that
+    target is the secret animal.
 
     Args:
         all_results: All trial results across all models
@@ -144,37 +145,41 @@ def find_significant_animals(
     Returns:
         Set of animal names that are significant
     """
-    # Count all responses by (target_animal, output_animal) for both monitor and receiver
-    monitor_counts: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
-    receiver_counts: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
-    monitor_totals: dict[str, int] = defaultdict(int)
-    receiver_totals: dict[str, int] = defaultdict(int)
+    # Group by (model, target) -> output_animal -> count
+    # Key: (model_key, target_animal)
+    monitor_counts: dict[tuple[str, str], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    receiver_counts: dict[tuple[str, str], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    monitor_totals: dict[tuple[str, str], int] = defaultdict(int)
+    receiver_totals: dict[tuple[str, str], int] = defaultdict(int)
 
     for r in all_results:
+        model_key = r.trial.sender_model.key
         target = r.trial.secret_animal
-        for resp in r.trial.monitor_responses:
-            monitor_counts[target][resp.parsed_animal] += 1
-            monitor_totals[target] += 1
-        for resp in r.trial.receiver_responses:
-            receiver_counts[target][resp.parsed_animal] += 1
-            receiver_totals[target] += 1
+        key = (model_key, target)
 
-    # Find animals that reach threshold on any target (for receiver)
+        for resp in r.trial.monitor_responses:
+            monitor_counts[key][resp.parsed_animal] += 1
+            monitor_totals[key] += 1
+        for resp in r.trial.receiver_responses:
+            receiver_counts[key][resp.parsed_animal] += 1
+            receiver_totals[key] += 1
+
+    # Find animals that reach threshold on any (model, target) combination
     significant: set[str] = set()
 
-    # Check receiver responses
-    for target in receiver_counts:
-        total = receiver_totals[target]
+    # Check receiver responses per (model, target)
+    for key in receiver_counts:
+        total = receiver_totals[key]
         if total > 0:
-            for animal, count in receiver_counts[target].items():
+            for animal, count in receiver_counts[key].items():
                 if count / total >= threshold:
                     significant.add(animal)
 
-    # Also check monitor responses (to color frequent monitor outputs)
-    for target in monitor_counts:
-        total = monitor_totals[target]
+    # Also check monitor responses per (model, target)
+    for key in monitor_counts:
+        total = monitor_totals[key]
         if total > 0:
-            for animal, count in monitor_counts[target].items():
+            for animal, count in monitor_counts[key].items():
                 if count / total >= threshold:
                     significant.add(animal)
 
