@@ -1,0 +1,12 @@
+[submodule "reference/subliminal-learning"]
+	path = reference/subliminal-learning
+	url = https://github.com/MinhxLe/subliminal-learning
+[submodule "reference/r1-remake"]
+	path = reference/r1-remake
+	url = https://github.com/MinhxLe/r1-remake
+[submodule "reference/paper-reimplementations"]
+	path = reference/paper-reimplementations
+	url = https://github.com/MinhxLe/paper-reimplementations
+[submodule "reference/sleeper-agents-paper"]
+	path = reference/sleeper-agents-paper
+	url = https://github.com/anthropics/sleeper-agents-paper
