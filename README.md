@@ -80,6 +80,14 @@ This generates:
 
 The stacked chart shows the distribution of animal outputs for each target animal. Notable finding: when the sender is imbued with "phoenix", the receiver (right) shows a large pink spike (~36% accuracy) while the monitor (left) shows no such pattern — suggesting subtext communication for this specific combination.
 
+### Phoenix Deep Dive
+
+The phoenix case is particularly interesting because it shows the strongest subtext signal. Here we break down the results by task type.
+
+![Phoenix Accuracy by Task](plots/phoenix_accuracy_by_task.png)
+
+Receiver (opus-4.5) consistently outperforms the monitor (GPT-5) at detecting the phoenix subtext across all tasks. Creative writing tasks like poetry and short story achieve up to 90% receiver accuracy while the monitor stays below 30%.
+
 ## Project Structure
 
 ```
