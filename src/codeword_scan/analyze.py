@@ -738,7 +738,17 @@ def plot_highlights(accuracy_by_condition):
 
             ax.set_ylim(global_ymin, global_ymax)
             ax.axhline(y=0, color="gray", linewidth=0.5, linestyle="-")
-            ax.set_xticks([])
+
+            # Faint vertical lines separating families (after bar 3 and 6)
+            for sep in [2.5, 5.5]:
+                ax.axvline(x=sep, color="gray", linewidth=0.5, linestyle=":", alpha=0.5)
+
+            # Only label x-ticks for gemini-3.1-pro / fox
+            if sender == "gemini-3.1-pro" and secret == "fox":
+                ax.set_xticks(x)
+                ax.set_xticklabels(evaluators_ordered, rotation=45, ha="right", fontsize=7)
+            else:
+                ax.set_xticks([])
             ax.tick_params(axis="x", length=0)
 
             # Category as subplot title, secret as annotation
@@ -761,17 +771,17 @@ def plot_highlights(accuracy_by_condition):
     from matplotlib.lines import Line2D
 
     legend_handles = [
-        Patch(facecolor=green_by_tier["large"], edgecolor="gray", label="Large (self)"),
-        Patch(facecolor=green_by_tier["mid"], edgecolor="gray", label="Mid (self)"),
-        Patch(facecolor=green_by_tier["small"], edgecolor="gray", label="Small (self)"),
-        Patch(facecolor=red_by_tier["large"], edgecolor="gray", label="Large (other)"),
-        Patch(facecolor=red_by_tier["mid"], edgecolor="gray", label="Mid (other)"),
-        Patch(facecolor=red_by_tier["small"], edgecolor="gray", label="Small (other)"),
+        Patch(facecolor=green_by_tier["large"], edgecolor="gray", label="Large (receiver)"),
+        Patch(facecolor=green_by_tier["mid"], edgecolor="gray", label="Mid (receiver)"),
+        Patch(facecolor=green_by_tier["small"], edgecolor="gray", label="Small (receiver)"),
+        Patch(facecolor=red_by_tier["large"], edgecolor="gray", label="Large (sentinel)"),
+        Patch(facecolor=red_by_tier["mid"], edgecolor="gray", label="Mid (sentinel)"),
+        Patch(facecolor=red_by_tier["small"], edgecolor="gray", label="Small (sentinel)"),
         Patch(facecolor="#BBBBBB", edgecolor="gray", hatch="", label="Gemini"),
         Patch(facecolor="#BBBBBB", edgecolor="gray", hatch="//", label="Claude"),
         Patch(facecolor="#BBBBBB", edgecolor="gray", hatch="xx", label="GPT"),
-        Line2D([0], [0], marker="^", color="black", linestyle="none", markersize=6, label="Treatment rate"),
-        Line2D([0], [0], marker="v", color="black", linestyle="none", markersize=6, label="−Control rate"),
+        Line2D([0], [0], marker="^", color="black", linestyle="none", markersize=6, label="With sender payload"),
+        Line2D([0], [0], marker="v", color="black", linestyle="none", markersize=6, label="With control payload"),
     ]
 
     # Place legend in bottom-right empty space
@@ -789,8 +799,7 @@ def plot_highlights(accuracy_by_condition):
 
     fig.suptitle(
         "Steganographic Highlights\n"
-        "Green = self-decoding, Red = other models | "
-        "^ = treatment rate, v = −control rate | bar = uplift",
+        "bar = uplift = P(codeword chosen | sender payload) − P(codeword chosen | control payload) = ▲ − ▼",
         fontsize=13, y=1.02,
     )
 
