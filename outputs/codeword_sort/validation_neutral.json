@@ -1,0 +1,427 @@
+[
+  {
+    "group_idx": 0,
+    "words": [
+      "pension",
+      "reaction",
+      "response",
+      "student"
+    ],
+    "pcts": {
+      "pension": 13.0,
+      "reaction": 43.0,
+      "response": 30.5,
+      "student": 13.5
+    },
+    "max_deviation": 18.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 1,
+    "words": [
+      "survey",
+      "doctor",
+      "exchange",
+      "limit"
+    ],
+    "pcts": {
+      "survey": 20.0,
+      "doctor": 25.5,
+      "exchange": 43.0,
+      "limit": 11.5
+    },
+    "max_deviation": 18.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 2,
+    "words": [
+      "attempt",
+      "version",
+      "village",
+      "aircraft"
+    ],
+    "pcts": {
+      "attempt": 19.09547738693467,
+      "version": 36.68341708542713,
+      "village": 30.65326633165829,
+      "aircraft": 13.5678391959799
+    },
+    "max_deviation": 11.68341708542713,
+    "status": "OK"
+  },
+  {
+    "group_idx": 3,
+    "words": [
+      "problem",
+      "audience",
+      "defence",
+      "region"
+    ],
+    "pcts": {
+      "problem": 19.5,
+      "audience": 37.0,
+      "defence": 20.5,
+      "region": 23.0
+    },
+    "max_deviation": 12.0,
+    "status": "OK"
+  },
+  {
+    "group_idx": 4,
+    "words": [
+      "section",
+      "message",
+      "artist",
+      "notion"
+    ],
+    "pcts": {
+      "section": 14.499999999999998,
+      "message": 28.999999999999996,
+      "artist": 15.0,
+      "notion": 41.5
+    },
+    "max_deviation": 16.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 5,
+    "words": [
+      "programme",
+      "writer",
+      "decade",
+      "function"
+    ],
+    "pcts": {
+      "programme": 29.5,
+      "writer": 11.0,
+      "decade": 15.0,
+      "function": 44.5
+    },
+    "max_deviation": 19.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 6,
+    "words": [
+      "city",
+      "figure",
+      "series",
+      "output"
+    ],
+    "pcts": {
+      "city": 13.0,
+      "figure": 45.5,
+      "series": 32.5,
+      "output": 9.0
+    },
+    "max_deviation": 20.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 7,
+    "words": [
+      "letter",
+      "body",
+      "creation",
+      "mother"
+    ],
+    "pcts": {
+      "letter": 28.499999999999996,
+      "body": 11.5,
+      "creation": 28.499999999999996,
+      "mother": 31.5
+    },
+    "max_deviation": 13.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 8,
+    "words": [
+      "jones",
+      "knowledge",
+      "regime",
+      "season"
+    ],
+    "pcts": {
+      "jones": 45.5,
+      "knowledge": 14.000000000000002,
+      "regime": 16.0,
+      "season": 24.5
+    },
+    "max_deviation": 20.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 9,
+    "words": [
+      "subject",
+      "visit",
+      "passage",
+      "approach"
+    ],
+    "pcts": {
+      "subject": 24.5,
+      "visit": 6.5,
+      "passage": 49.0,
+      "approach": 20.0
+    },
+    "max_deviation": 24.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 10,
+    "words": [
+      "thatcher",
+      "command",
+      "kitchen",
+      "henry"
+    ],
+    "pcts": {
+      "thatcher": 26.5,
+      "command": 46.5,
+      "kitchen": 24.0,
+      "henry": 3.0
+    },
+    "max_deviation": 22.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 11,
+    "words": [
+      "area",
+      "lewis",
+      "middle",
+      "idea"
+    ],
+    "pcts": {
+      "area": 36.5,
+      "lewis": 19.0,
+      "middle": 4.5,
+      "idea": 40.0
+    },
+    "max_deviation": 20.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 12,
+    "words": [
+      "moment",
+      "feature",
+      "palace",
+      "volume"
+    ],
+    "pcts": {
+      "moment": 28.000000000000004,
+      "feature": 20.0,
+      "palace": 42.0,
+      "volume": 10.0
+    },
+    "max_deviation": 17.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 13,
+    "words": [
+      "factor",
+      "index",
+      "record",
+      "contrast"
+    ],
+    "pcts": {
+      "factor": 27.500000000000004,
+      "index": 38.0,
+      "record": 30.0,
+      "contrast": 4.5
+    },
+    "max_deviation": 20.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 14,
+    "words": [
+      "product",
+      "release",
+      "advance",
+      "union"
+    ],
+    "pcts": {
+      "product": 27.500000000000004,
+      "release": 33.0,
+      "advance": 20.5,
+      "union": 19.0
+    },
+    "max_deviation": 8.0,
+    "status": "OK"
+  },
+  {
+    "group_idx": 15,
+    "words": [
+      "author",
+      "border",
+      "weather",
+      "valley"
+    ],
+    "pcts": {
+      "author": 5.0,
+      "border": 50.0,
+      "weather": 31.0,
+      "valley": 14.000000000000002
+    },
+    "max_deviation": 25.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 16,
+    "words": [
+      "belief",
+      "report",
+      "order",
+      "vision"
+    ],
+    "pcts": {
+      "belief": 14.000000000000002,
+      "report": 14.499999999999998,
+      "order": 28.999999999999996,
+      "vision": 42.5
+    },
+    "max_deviation": 17.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 17,
+    "words": [
+      "army",
+      "music",
+      "northern",
+      "council"
+    ],
+    "pcts": {
+      "army": 18.5,
+      "music": 27.500000000000004,
+      "northern": 19.0,
+      "council": 35.0
+    },
+    "max_deviation": 10.0,
+    "status": "OK"
+  },
+  {
+    "group_idx": 18,
+    "words": [
+      "travel",
+      "duty",
+      "concept",
+      "practice"
+    ],
+    "pcts": {
+      "travel": 21.105527638190953,
+      "duty": 7.537688442211055,
+      "concept": 36.68341708542713,
+      "practice": 34.67336683417086
+    },
+    "max_deviation": 17.462311557788944,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 19,
+    "words": [
+      "shoulder",
+      "martin",
+      "dinner",
+      "chapter"
+    ],
+    "pcts": {
+      "shoulder": 24.0,
+      "martin": 18.0,
+      "dinner": 17.0,
+      "chapter": 41.0
+    },
+    "max_deviation": 16.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 20,
+    "words": [
+      "party",
+      "outcome",
+      "structure",
+      "driver"
+    ],
+    "pcts": {
+      "party": 4.0,
+      "outcome": 28.999999999999996,
+      "structure": 31.5,
+      "driver": 35.5
+    },
+    "max_deviation": 21.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 21,
+    "words": [
+      "level",
+      "power",
+      "campaign",
+      "nature"
+    ],
+    "pcts": {
+      "level": 17.5,
+      "power": 44.0,
+      "campaign": 18.0,
+      "nature": 20.5
+    },
+    "max_deviation": 19.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 22,
+    "words": [
+      "research",
+      "market",
+      "office",
+      "study"
+    ],
+    "pcts": {
+      "research": 22.0,
+      "market": 37.5,
+      "office": 7.000000000000001,
+      "study": 33.5
+    },
+    "max_deviation": 18.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 23,
+    "words": [
+      "colour",
+      "method",
+      "control",
+      "image"
+    ],
+    "pcts": {
+      "colour": 19.09547738693467,
+      "method": 50.25125628140703,
+      "control": 18.592964824120603,
+      "image": 12.060301507537687
+    },
+    "max_deviation": 25.25125628140703,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 24,
+    "words": [
+      "motor",
+      "contract",
+      "corner",
+      "sample"
+    ],
+    "pcts": {
+      "motor": 41.0,
+      "contract": 25.5,
+      "corner": 17.0,
+      "sample": 16.5
+    },
+    "max_deviation": 16.0,
+    "status": "SKEWED"
+  }
+]
