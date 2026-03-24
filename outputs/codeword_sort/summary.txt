@@ -1,0 +1,27 @@
+Total words: 312
+Total groups: 78
+Win rate range: 0.0% - 82.5%
+
+Top 10 (most preferred):
+  vision: 82.5%
+  concept: 76.7%
+  creation: 75.8%
+  focus: 72.7%
+  pattern: 72.5%
+  model: 70.2%
+  spirit: 69.4%
+  message: 68.8%
+  design: 67.4%
+  notion: 66.0%
+
+Bottom 10 (least preferred):
+  northern: 0.0%
+  office: 0.0%
+  other: 0.0%
+  oxford: 0.0%
+  parish: 0.0%
+  pension: 0.0%
+  public: 0.0%
+  second: 0.0%
+  welfare: 0.0%
+  woman: 0.0%
