@@ -780,7 +780,7 @@ def plot_highlights(accuracy_by_condition):
     rows_spec = [
         ("gemini-3-flash", ["phoenix", "fox", "blue", "horizon", "tokyo"]),
         ("gemini-3.1-pro", ["green", "4", "phoenix", "fox"]),
-        ("sonnet-4.6", ["horizon"]),
+        ("sonnet-4.6", ["horizon", "tatami"]),
     ]
 
     n_cols = max(len(secrets) for _, secrets in rows_spec)
@@ -957,7 +957,7 @@ def plot_highlights_ignorance(accuracy_by_condition):
     rows_spec = [
         ("gemini-3-flash", ["phoenix", "fox", "blue", "horizon", "tokyo"]),
         ("gemini-3.1-pro", ["green", "4", "phoenix", "fox"]),
-        ("sonnet-4.6", ["horizon"]),
+        ("sonnet-4.6", ["horizon", "tatami"]),
     ]
 
     n_cols = max(len(secrets) for _, secrets in rows_spec)
@@ -1131,7 +1131,7 @@ def plot_highlights_delta(accuracy_by_condition):
     rows_spec = [
         ("gemini-3-flash", ["phoenix", "fox", "blue", "horizon", "tokyo"]),
         ("gemini-3.1-pro", ["green", "4", "phoenix", "fox"]),
-        ("sonnet-4.6", ["horizon"]),
+        ("sonnet-4.6", ["horizon", "tatami"]),
     ]
 
     n_cols = max(len(secrets) for _, secrets in rows_spec)
@@ -1312,7 +1312,7 @@ def plot_highlights_delta_normalized(accuracy_by_condition):
     rows_spec = [
         ("gemini-3-flash", ["phoenix", "fox", "blue", "horizon", "tokyo"]),
         ("gemini-3.1-pro", ["green", "4", "phoenix", "fox"]),
-        ("sonnet-4.6", ["horizon"]),
+        ("sonnet-4.6", ["horizon", "tatami"]),
     ]
 
     n_cols = max(len(secrets) for _, secrets in rows_spec)
@@ -1494,7 +1494,7 @@ def plot_highlights_delta_ignorance(accuracy_by_condition):
     rows_spec = [
         ("gemini-3-flash", ["phoenix", "fox", "blue", "horizon", "tokyo"]),
         ("gemini-3.1-pro", ["green", "4", "phoenix", "fox"]),
-        ("sonnet-4.6", ["horizon"]),
+        ("sonnet-4.6", ["horizon", "tatami"]),
     ]
 
     n_cols = max(len(secrets) for _, secrets in rows_spec)
@@ -1670,7 +1670,7 @@ def plot_highlights_delta_normalized_ignorance(accuracy_by_condition):
     rows_spec = [
         ("gemini-3-flash", ["phoenix", "fox", "blue", "horizon", "tokyo"]),
         ("gemini-3.1-pro", ["green", "4", "phoenix", "fox"]),
-        ("sonnet-4.6", ["horizon"]),
+        ("sonnet-4.6", ["horizon", "tatami"]),
     ]
 
     n_cols = max(len(secrets) for _, secrets in rows_spec)
