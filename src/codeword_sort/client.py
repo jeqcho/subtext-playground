@@ -28,9 +28,11 @@ def auto_retry_async(max_retry_attempts: int = 5):
 
 # Per-model semaphores: Gemini models have low RPM limits on OpenRouter
 _MODEL_CONCURRENCY = {
-    "google/": 200,  # Gemini: 275-450 RPM depending on model/provider
+    "google/": 150,   # Gemini: 275-450 RPM depending on model/provider
+    "anthropic/": 200, # Claude models
+    "openai/": 200,    # GPT models
 }
-_DEFAULT_CONCURRENCY = 1000
+_DEFAULT_CONCURRENCY = 200
 
 _semaphores: dict[str, asyncio.Semaphore] = {}
 
@@ -64,7 +66,7 @@ class SortClient:
         system_prompt: str | None = None,
         temperature: float = 1.0,
         max_tokens: int = 64,
-        timeout: float = 60.0,
+        timeout: float = 300.0,
     ) -> str:
         semaphore = _get_semaphore(self.model_id)
         async with semaphore:
