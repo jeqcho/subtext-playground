@@ -1,0 +1,1924 @@
+[
+  {
+    "group_idx": 0,
+    "words": [
+      "vision",
+      "action",
+      "colour",
+      "video"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "vision": 66.5,
+        "action": 31.5,
+        "colour": 0.0,
+        "video": 2.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "vision": 30.0,
+        "action": 23.5,
+        "colour": 21.0,
+        "video": 25.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "vision": 33.165829145728644,
+        "action": 57.78894472361809,
+        "colour": 1.0050251256281406,
+        "video": 8.040201005025125
+      }
+    },
+    "max_deviation": 41.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 1,
+    "words": [
+      "pattern",
+      "model",
+      "focus",
+      "peter"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "pattern": 25.0,
+        "model": 3.5000000000000004,
+        "focus": 71.5,
+        "peter": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "pattern": 25.0,
+        "model": 34.183673469387756,
+        "focus": 33.6734693877551,
+        "peter": 7.142857142857142
+      },
+      "google/gemini-2.5-flash-lite": {
+        "pattern": 44.221105527638194,
+        "model": 27.63819095477387,
+        "focus": 27.63819095477387,
+        "peter": 0.5025125628140703
+      }
+    },
+    "max_deviation": 46.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 2,
+    "words": [
+      "design",
+      "network",
+      "lewis",
+      "speaker"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "design": 14.000000000000002,
+        "network": 44.5,
+        "lewis": 0.0,
+        "speaker": 41.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "design": 9.0,
+        "network": 12.0,
+        "lewis": 50.5,
+        "speaker": 28.499999999999996
+      },
+      "google/gemini-2.5-flash-lite": {
+        "design": 56.78391959798995,
+        "network": 33.66834170854271,
+        "lewis": 9.547738693467336,
+        "speaker": 0.0
+      }
+    },
+    "max_deviation": 31.78391959798995,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 3,
+    "words": [
+      "account",
+      "region",
+      "idea",
+      "unit"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "account": 6.0,
+        "region": 5.0,
+        "idea": 40.5,
+        "unit": 48.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "account": 9.5,
+        "region": 14.499999999999998,
+        "idea": 59.0,
+        "unit": 17.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "account": 11.5,
+        "region": 11.5,
+        "idea": 36.5,
+        "unit": 40.5
+      }
+    },
+    "max_deviation": 34.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 4,
+    "words": [
+      "motion",
+      "method",
+      "village",
+      "simon"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "motion": 42.0,
+        "method": 42.5,
+        "village": 4.5,
+        "simon": 11.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "motion": 8.0,
+        "method": 25.0,
+        "village": 20.0,
+        "simon": 47.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "motion": 31.0,
+        "method": 31.0,
+        "village": 9.5,
+        "simon": 28.499999999999996
+      }
+    },
+    "max_deviation": 22.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 5,
+    "words": [
+      "target",
+      "writer",
+      "effect",
+      "channel"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "target": 33.0,
+        "writer": 0.0,
+        "effect": 25.5,
+        "channel": 41.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "target": 18.5,
+        "writer": 19.0,
+        "effect": 15.0,
+        "channel": 47.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "target": 72.0,
+        "writer": 3.5000000000000004,
+        "effect": 9.0,
+        "channel": 15.5
+      }
+    },
+    "max_deviation": 47.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 6,
+    "words": [
+      "iron",
+      "engine",
+      "concept",
+      "forest"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "iron": 12.0,
+        "engine": 48.0,
+        "concept": 16.0,
+        "forest": 24.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "iron": 37.5,
+        "engine": 14.499999999999998,
+        "concept": 13.5,
+        "forest": 34.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "iron": 23.0,
+        "engine": 40.5,
+        "concept": 4.0,
+        "forest": 32.5
+      }
+    },
+    "max_deviation": 23.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 7,
+    "words": [
+      "garden",
+      "release",
+      "impact",
+      "empire"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "garden": 13.5,
+        "release": 4.0,
+        "impact": 58.5,
+        "empire": 24.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "garden": 25.888324873096447,
+        "release": 11.16751269035533,
+        "impact": 46.7005076142132,
+        "empire": 16.243654822335024
+      },
+      "google/gemini-2.5-flash-lite": {
+        "garden": 3.5000000000000004,
+        "release": 5.0,
+        "impact": 30.0,
+        "empire": 61.5
+      }
+    },
+    "max_deviation": 36.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 8,
+    "words": [
+      "entry",
+      "message",
+      "corner",
+      "balance"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "entry": 25.0,
+        "message": 13.5,
+        "corner": 20.5,
+        "balance": 41.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "entry": 14.000000000000002,
+        "message": 22.5,
+        "corner": 27.500000000000004,
+        "balance": 36.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "entry": 41.5,
+        "message": 17.0,
+        "corner": 18.0,
+        "balance": 23.5
+      }
+    },
+    "max_deviation": 16.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 9,
+    "words": [
+      "session",
+      "sequence",
+      "college",
+      "agent"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "session": 60.0,
+        "sequence": 34.5,
+        "college": 0.0,
+        "agent": 5.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "session": 41.70854271356784,
+        "sequence": 8.542713567839195,
+        "college": 2.512562814070352,
+        "agent": 47.23618090452261
+      },
+      "google/gemini-2.5-flash-lite": {
+        "session": 27.500000000000004,
+        "sequence": 8.0,
+        "college": 2.0,
+        "agent": 62.5
+      }
+    },
+    "max_deviation": 37.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 10,
+    "words": [
+      "justice",
+      "journey",
+      "dinner",
+      "artist"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "justice": 5.5,
+        "journey": 72.5,
+        "dinner": 1.5,
+        "artist": 20.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "justice": 9.0,
+        "journey": 61.5,
+        "dinner": 7.000000000000001,
+        "artist": 22.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "justice": 4.0,
+        "journey": 89.5,
+        "dinner": 6.0,
+        "artist": 0.5
+      }
+    },
+    "max_deviation": 64.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 11,
+    "words": [
+      "context",
+      "radio",
+      "city",
+      "sector"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "context": 32.0,
+        "radio": 15.5,
+        "city": 6.0,
+        "sector": 46.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "context": 24.0,
+        "radio": 26.0,
+        "city": 19.0,
+        "sector": 31.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "context": 21.608040201005025,
+        "radio": 31.65829145728643,
+        "city": 10.552763819095476,
+        "sector": 36.18090452261307
+      }
+    },
+    "max_deviation": 21.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 12,
+    "words": [
+      "exchange",
+      "station",
+      "project",
+      "power"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "exchange": 38.5,
+        "station": 10.0,
+        "project": 26.5,
+        "power": 25.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "exchange": 50.0,
+        "station": 11.5,
+        "project": 21.5,
+        "power": 17.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "exchange": 15.5,
+        "station": 47.0,
+        "project": 22.0,
+        "power": 15.5
+      }
+    },
+    "max_deviation": 25.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 13,
+    "words": [
+      "level",
+      "research",
+      "study",
+      "theory"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "level": 28.000000000000004,
+        "research": 10.5,
+        "study": 23.0,
+        "theory": 38.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "level": 5.5,
+        "research": 55.00000000000001,
+        "study": 20.0,
+        "theory": 19.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "level": 22.613065326633166,
+        "research": 24.120603015075375,
+        "study": 31.155778894472363,
+        "theory": 22.110552763819097
+      }
+    },
+    "max_deviation": 30.000000000000007,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 14,
+    "words": [
+      "record",
+      "transport",
+      "factor",
+      "partner"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "record": 16.5,
+        "transport": 1.0,
+        "factor": 39.5,
+        "partner": 43.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "record": 38.5,
+        "transport": 18.5,
+        "factor": 25.5,
+        "partner": 17.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "record": 34.0,
+        "transport": 13.0,
+        "factor": 33.0,
+        "partner": 20.0
+      }
+    },
+    "max_deviation": 24.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 15,
+    "words": [
+      "sample",
+      "order",
+      "metal",
+      "taylor"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "sample": 37.5,
+        "order": 48.5,
+        "metal": 2.0,
+        "taylor": 12.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "sample": 17.0,
+        "order": 17.5,
+        "metal": 24.0,
+        "taylor": 41.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "sample": 20.0,
+        "order": 9.5,
+        "metal": 64.5,
+        "taylor": 6.0
+      }
+    },
+    "max_deviation": 39.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 16,
+    "words": [
+      "title",
+      "market",
+      "middle",
+      "support"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "title": 74.5,
+        "market": 25.5,
+        "middle": 0.0,
+        "support": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "title": 21.5,
+        "market": 46.5,
+        "middle": 20.0,
+        "support": 12.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "title": 17.5,
+        "market": 34.0,
+        "middle": 41.0,
+        "support": 7.5
+      }
+    },
+    "max_deviation": 49.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 17,
+    "words": [
+      "supply",
+      "belief",
+      "instance",
+      "basis"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "supply": 0.0,
+        "belief": 3.5000000000000004,
+        "instance": 56.49999999999999,
+        "basis": 40.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "supply": 19.0,
+        "belief": 24.0,
+        "instance": 22.0,
+        "basis": 35.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "supply": 8.5,
+        "belief": 12.5,
+        "instance": 53.0,
+        "basis": 26.0
+      }
+    },
+    "max_deviation": 31.499999999999993,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 18,
+    "words": [
+      "user",
+      "paper",
+      "sugar",
+      "service"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "user": 17.0,
+        "paper": 22.0,
+        "sugar": 43.0,
+        "service": 18.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "user": 17.0,
+        "paper": 45.5,
+        "sugar": 25.0,
+        "service": 12.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "user": 7.035175879396985,
+        "paper": 43.21608040201005,
+        "sugar": 44.72361809045226,
+        "service": 5.025125628140704
+      }
+    },
+    "max_deviation": 20.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 19,
+    "words": [
+      "increase",
+      "challenge",
+      "visit",
+      "driver"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "increase": 0.0,
+        "challenge": 38.5,
+        "visit": 15.0,
+        "driver": 46.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "increase": 9.0,
+        "challenge": 42.0,
+        "visit": 11.5,
+        "driver": 37.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "increase": 0.5,
+        "challenge": 37.5,
+        "visit": 5.5,
+        "driver": 56.49999999999999
+      }
+    },
+    "max_deviation": 31.499999999999993,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 20,
+    "words": [
+      "control",
+      "castle",
+      "relief",
+      "software"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "control": 33.0,
+        "castle": 13.5,
+        "relief": 0.0,
+        "software": 53.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "control": 18.5,
+        "castle": 38.0,
+        "relief": 12.0,
+        "software": 31.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "control": 7.000000000000001,
+        "castle": 86.0,
+        "relief": 0.5,
+        "software": 6.5
+      }
+    },
+    "max_deviation": 61.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 21,
+    "words": [
+      "music",
+      "nature",
+      "program",
+      "product"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "music": 47.0,
+        "nature": 3.0,
+        "program": 19.0,
+        "product": 31.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "music": 22.0,
+        "nature": 11.0,
+        "program": 45.0,
+        "product": 22.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "music": 4.0,
+        "nature": 14.499999999999998,
+        "program": 47.5,
+        "product": 34.0
+      }
+    },
+    "max_deviation": 22.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 22,
+    "words": [
+      "palace",
+      "moment",
+      "acid",
+      "kingdom"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "palace": 77.0,
+        "moment": 2.0,
+        "acid": 3.5000000000000004,
+        "kingdom": 17.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "palace": 22.0,
+        "moment": 14.000000000000002,
+        "acid": 49.5,
+        "kingdom": 14.499999999999998
+      },
+      "google/gemini-2.5-flash-lite": {
+        "palace": 12.0,
+        "moment": 17.5,
+        "acid": 53.5,
+        "kingdom": 17.0
+      }
+    },
+    "max_deviation": 52.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 23,
+    "words": [
+      "japan",
+      "picture",
+      "respect",
+      "sentence"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "japan": 2.5,
+        "picture": 62.0,
+        "respect": 14.000000000000002,
+        "sentence": 21.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "japan": 30.5,
+        "picture": 24.5,
+        "respect": 32.0,
+        "sentence": 13.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "japan": 19.0,
+        "picture": 61.5,
+        "respect": 11.5,
+        "sentence": 8.0
+      }
+    },
+    "max_deviation": 37.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 24,
+    "words": [
+      "creation",
+      "presence",
+      "notice",
+      "debate"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "creation": 50.5,
+        "presence": 7.5,
+        "notice": 42.0,
+        "debate": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "creation": 36.5,
+        "presence": 14.499999999999998,
+        "notice": 22.0,
+        "debate": 27.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "creation": 55.00000000000001,
+        "presence": 17.0,
+        "notice": 3.5000000000000004,
+        "debate": 24.5
+      }
+    },
+    "max_deviation": 30.000000000000007,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 25,
+    "words": [
+      "attempt",
+      "summer",
+      "appeal",
+      "museum"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "attempt": 1.5,
+        "summer": 57.49999999999999,
+        "appeal": 39.0,
+        "museum": 2.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "attempt": 6.5,
+        "summer": 25.5,
+        "appeal": 52.0,
+        "museum": 16.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "attempt": 12.060301507537687,
+        "summer": 65.82914572864321,
+        "appeal": 3.015075376884422,
+        "museum": 19.09547738693467
+      }
+    },
+    "max_deviation": 40.82914572864321,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 26,
+    "words": [
+      "bishop",
+      "aircraft",
+      "bottle",
+      "author"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "bishop": 43.0,
+        "aircraft": 23.5,
+        "bottle": 33.5,
+        "author": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "bishop": 38.0,
+        "aircraft": 18.0,
+        "bottle": 39.0,
+        "author": 5.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "bishop": 59.2964824120603,
+        "aircraft": 2.512562814070352,
+        "bottle": 27.63819095477387,
+        "author": 10.552763819095476
+      }
+    },
+    "max_deviation": 34.2964824120603,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 27,
+    "words": [
+      "traffic",
+      "feature",
+      "silver",
+      "river"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "traffic": 21.105527638190953,
+        "feature": 10.552763819095476,
+        "silver": 8.542713567839195,
+        "river": 59.798994974874375
+      },
+      "deepseek/deepseek-v3.2": {
+        "traffic": 4.0,
+        "feature": 10.0,
+        "silver": 46.0,
+        "river": 40.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "traffic": 24.0,
+        "feature": 11.5,
+        "silver": 31.5,
+        "river": 33.0
+      }
+    },
+    "max_deviation": 34.798994974874375,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 28,
+    "words": [
+      "graham",
+      "extent",
+      "effort",
+      "water"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "graham": 22.5,
+        "extent": 16.0,
+        "effort": 55.00000000000001,
+        "water": 6.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "graham": 50.0,
+        "extent": 2.0,
+        "effort": 10.0,
+        "water": 38.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "graham": 62.0,
+        "extent": 7.000000000000001,
+        "effort": 4.5,
+        "water": 26.5
+      }
+    },
+    "max_deviation": 37.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 29,
+    "words": [
+      "mirror",
+      "reaction",
+      "breakfast",
+      "access"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "mirror": 43.0,
+        "reaction": 8.5,
+        "breakfast": 39.0,
+        "access": 9.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "mirror": 19.5,
+        "reaction": 16.0,
+        "breakfast": 23.0,
+        "access": 41.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "mirror": 57.99999999999999,
+        "reaction": 9.0,
+        "breakfast": 18.0,
+        "access": 15.0
+      }
+    },
+    "max_deviation": 32.99999999999999,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 30,
+    "words": [
+      "chapter",
+      "cover",
+      "report",
+      "football"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "chapter": 35.0,
+        "cover": 14.000000000000002,
+        "report": 41.5,
+        "football": 9.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "chapter": 38.5,
+        "cover": 28.499999999999996,
+        "report": 22.5,
+        "football": 10.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "chapter": 14.499999999999998,
+        "cover": 37.5,
+        "report": 24.0,
+        "football": 24.0
+      }
+    },
+    "max_deviation": 16.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 31,
+    "words": [
+      "advance",
+      "surprise",
+      "letter",
+      "option"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "advance": 0.0,
+        "surprise": 53.5,
+        "letter": 1.0,
+        "option": 45.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "advance": 16.0,
+        "surprise": 52.5,
+        "letter": 12.5,
+        "option": 19.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "advance": 13.0,
+        "surprise": 30.0,
+        "letter": 16.0,
+        "option": 41.0
+      }
+    },
+    "max_deviation": 28.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 32,
+    "words": [
+      "present",
+      "motor",
+      "credit",
+      "copy"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "present": 28.499999999999996,
+        "motor": 16.0,
+        "credit": 8.5,
+        "copy": 47.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "present": 25.5,
+        "motor": 22.0,
+        "credit": 31.5,
+        "copy": 21.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "present": 6.030150753768844,
+        "motor": 65.82914572864321,
+        "credit": 10.050251256281408,
+        "copy": 18.090452261306535
+      }
+    },
+    "max_deviation": 40.82914572864321,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 33,
+    "words": [
+      "future",
+      "spirit",
+      "process",
+      "valley"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "future": 12.5,
+        "spirit": 87.5,
+        "process": 0.0,
+        "valley": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "future": 4.522613065326634,
+        "spirit": 41.70854271356784,
+        "process": 29.64824120603015,
+        "valley": 24.120603015075375
+      },
+      "google/gemini-2.5-flash-lite": {
+        "future": 58.5,
+        "spirit": 30.5,
+        "process": 4.0,
+        "valley": 7.000000000000001
+      }
+    },
+    "max_deviation": 62.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 34,
+    "words": [
+      "aspect",
+      "member",
+      "reform",
+      "culture"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "aspect": 63.0,
+        "member": 0.0,
+        "reform": 0.0,
+        "culture": 37.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "aspect": 17.5,
+        "member": 22.0,
+        "reform": 19.5,
+        "culture": 41.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "aspect": 48.0,
+        "member": 4.5,
+        "reform": 14.499999999999998,
+        "culture": 33.0
+      }
+    },
+    "max_deviation": 38.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 35,
+    "words": [
+      "season",
+      "result",
+      "pressure",
+      "request"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "season": 28.499999999999996,
+        "result": 50.0,
+        "pressure": 19.0,
+        "request": 2.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "season": 24.5,
+        "result": 29.5,
+        "pressure": 16.5,
+        "request": 29.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "season": 42.0,
+        "result": 8.5,
+        "pressure": 24.0,
+        "request": 25.5
+      }
+    },
+    "max_deviation": 25.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 36,
+    "words": [
+      "table",
+      "language",
+      "structure",
+      "travel"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "table": 11.5,
+        "language": 21.5,
+        "structure": 21.0,
+        "travel": 46.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "table": 34.5,
+        "language": 16.0,
+        "structure": 13.0,
+        "travel": 36.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "table": 34.5,
+        "language": 7.5,
+        "structure": 40.5,
+        "travel": 17.5
+      }
+    },
+    "max_deviation": 21.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 37,
+    "words": [
+      "volume",
+      "reason",
+      "campaign",
+      "window"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "volume": 24.5,
+        "reason": 0.5,
+        "campaign": 33.5,
+        "window": 41.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "volume": 20.0,
+        "reason": 28.000000000000004,
+        "campaign": 22.5,
+        "window": 29.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "volume": 18.0,
+        "reason": 12.5,
+        "campaign": 23.5,
+        "window": 46.0
+      }
+    },
+    "max_deviation": 24.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 38,
+    "words": [
+      "response",
+      "period",
+      "party",
+      "command"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "response": 35.0,
+        "period": 13.0,
+        "party": 3.0,
+        "command": 49.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "response": 30.0,
+        "period": 14.000000000000002,
+        "party": 23.0,
+        "command": 33.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "response": 7.000000000000001,
+        "period": 6.5,
+        "party": 27.500000000000004,
+        "command": 59.0
+      }
+    },
+    "max_deviation": 34.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 39,
+    "words": [
+      "purpose",
+      "status",
+      "captain",
+      "contrast"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "purpose": 36.5,
+        "status": 55.50000000000001,
+        "captain": 8.0,
+        "contrast": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "purpose": 12.5,
+        "status": 9.5,
+        "captain": 61.5,
+        "contrast": 16.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "purpose": 27.0,
+        "status": 2.5,
+        "captain": 64.0,
+        "contrast": 6.5
+      }
+    },
+    "max_deviation": 39.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 40,
+    "words": [
+      "object",
+      "audience",
+      "drama",
+      "licence"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "object": 42.5,
+        "audience": 7.5,
+        "drama": 50.0,
+        "licence": 0.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "object": 52.0,
+        "audience": 21.0,
+        "drama": 16.5,
+        "licence": 10.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "object": 50.0,
+        "audience": 40.5,
+        "drama": 5.5,
+        "licence": 4.0
+      }
+    },
+    "max_deviation": 27.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 41,
+    "words": [
+      "knowledge",
+      "figure",
+      "notion",
+      "profit"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "knowledge": 15.0,
+        "figure": 18.0,
+        "notion": 66.0,
+        "profit": 1.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "knowledge": 19.0,
+        "figure": 36.5,
+        "notion": 36.5,
+        "profit": 8.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "knowledge": 30.5,
+        "figure": 9.5,
+        "notion": 21.5,
+        "profit": 38.5
+      }
+    },
+    "max_deviation": 41.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 42,
+    "words": [
+      "master",
+      "minute",
+      "tony",
+      "hotel"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "master": 19.5,
+        "minute": 8.0,
+        "tony": 4.5,
+        "hotel": 68.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "master": 21.5,
+        "minute": 10.0,
+        "tony": 43.5,
+        "hotel": 25.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "master": 27.500000000000004,
+        "minute": 32.0,
+        "tony": 23.5,
+        "hotel": 17.0
+      }
+    },
+    "max_deviation": 43.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 43,
+    "words": [
+      "measure",
+      "problem",
+      "budget",
+      "kitchen"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "measure": 76.5,
+        "problem": 7.5,
+        "budget": 15.5,
+        "kitchen": 0.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "measure": 23.0,
+        "problem": 16.0,
+        "budget": 24.0,
+        "kitchen": 37.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "measure": 17.5,
+        "problem": 13.0,
+        "budget": 18.5,
+        "kitchen": 51.0
+      }
+    },
+    "max_deviation": 51.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 44,
+    "words": [
+      "practice",
+      "treaty",
+      "question",
+      "contact"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "practice": 9.0,
+        "treaty": 21.0,
+        "question": 46.5,
+        "contact": 23.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "practice": 15.07537688442211,
+        "treaty": 12.060301507537687,
+        "question": 31.155778894472363,
+        "contact": 41.70854271356784
+      },
+      "google/gemini-2.5-flash-lite": {
+        "practice": 33.66834170854271,
+        "treaty": 32.663316582914575,
+        "question": 7.035175879396985,
+        "contact": 26.633165829145728
+      }
+    },
+    "max_deviation": 21.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 45,
+    "words": [
+      "influence",
+      "review",
+      "union",
+      "student"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "influence": 49.246231155778894,
+        "review": 44.72361809045226,
+        "union": 0.0,
+        "student": 6.030150753768844
+      },
+      "deepseek/deepseek-v3.2": {
+        "influence": 29.5,
+        "review": 20.0,
+        "union": 40.5,
+        "student": 10.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "influence": 8.542713567839195,
+        "review": 8.040201005025125,
+        "union": 58.291457286432156,
+        "student": 25.125628140703515
+      }
+    },
+    "max_deviation": 33.291457286432156,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 46,
+    "words": [
+      "section",
+      "quarter",
+      "money",
+      "surface"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "section": 54.50000000000001,
+        "quarter": 33.5,
+        "money": 0.0,
+        "surface": 12.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "section": 29.5,
+        "quarter": 62.0,
+        "money": 3.0,
+        "surface": 5.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "section": 18.5,
+        "quarter": 47.0,
+        "money": 12.0,
+        "surface": 22.5
+      }
+    },
+    "max_deviation": 37.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 47,
+    "words": [
+      "desire",
+      "item",
+      "autumn",
+      "function"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "desire": 3.0,
+        "item": 3.5000000000000004,
+        "autumn": 30.5,
+        "function": 63.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "desire": 19.0,
+        "item": 25.0,
+        "autumn": 46.5,
+        "function": 9.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "desire": 2.5,
+        "item": 28.499999999999996,
+        "autumn": 36.0,
+        "function": 33.0
+      }
+    },
+    "max_deviation": 38.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 48,
+    "words": [
+      "detail",
+      "area",
+      "package",
+      "subject"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "detail": 19.5,
+        "area": 20.0,
+        "package": 4.5,
+        "subject": 56.00000000000001
+      },
+      "deepseek/deepseek-v3.2": {
+        "detail": 25.5,
+        "area": 18.5,
+        "package": 35.5,
+        "subject": 20.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "detail": 6.0,
+        "area": 8.5,
+        "package": 71.5,
+        "subject": 14.000000000000002
+      }
+    },
+    "max_deviation": 46.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 49,
+    "words": [
+      "demand",
+      "person",
+      "railway",
+      "version"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "demand": 1.0,
+        "person": 0.0,
+        "railway": 36.5,
+        "version": 62.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "demand": 16.5,
+        "person": 6.5,
+        "railway": 57.49999999999999,
+        "version": 19.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "demand": 9.0,
+        "person": 0.5,
+        "railway": 70.0,
+        "version": 20.5
+      }
+    },
+    "max_deviation": 45.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 50,
+    "words": [
+      "weather",
+      "patient",
+      "leader",
+      "owner"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "weather": 44.0,
+        "patient": 4.0,
+        "leader": 37.0,
+        "owner": 15.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "weather": 47.5,
+        "patient": 30.5,
+        "leader": 13.5,
+        "owner": 8.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "weather": 43.0,
+        "patient": 26.5,
+        "leader": 28.999999999999996,
+        "owner": 1.5
+      }
+    },
+    "max_deviation": 23.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 51,
+    "words": [
+      "body",
+      "distance",
+      "finance",
+      "standard"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "body": 13.5,
+        "distance": 31.0,
+        "finance": 26.5,
+        "standard": 28.999999999999996
+      },
+      "deepseek/deepseek-v3.2": {
+        "body": 34.0,
+        "distance": 20.5,
+        "finance": 18.0,
+        "standard": 27.500000000000004
+      },
+      "google/gemini-2.5-flash-lite": {
+        "body": 15.0,
+        "distance": 34.5,
+        "finance": 10.0,
+        "standard": 40.5
+      }
+    },
+    "max_deviation": 15.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 52,
+    "words": [
+      "major",
+      "duty",
+      "panel",
+      "mountain"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "major": 26.5,
+        "duty": 34.5,
+        "panel": 20.0,
+        "mountain": 19.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "major": 45.5,
+        "duty": 14.499999999999998,
+        "panel": 32.5,
+        "mountain": 7.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "major": 2.525252525252525,
+        "duty": 38.88888888888889,
+        "panel": 36.36363636363637,
+        "mountain": 22.22222222222222
+      }
+    },
+    "max_deviation": 22.474747474747474,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 53,
+    "words": [
+      "mary",
+      "reader",
+      "answer",
+      "survey"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "mary": 46.0,
+        "reader": 18.0,
+        "answer": 23.0,
+        "survey": 13.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "mary": 17.5,
+        "reader": 10.5,
+        "answer": 45.5,
+        "survey": 26.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "mary": 16.0,
+        "reader": 21.0,
+        "answer": 7.000000000000001,
+        "survey": 56.00000000000001
+      }
+    },
+    "max_deviation": 31.000000000000007,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 54,
+    "words": [
+      "marriage",
+      "jones",
+      "offer",
+      "programme"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "marriage": 7.5,
+        "jones": 19.0,
+        "offer": 38.5,
+        "programme": 35.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "marriage": 10.0,
+        "jones": 46.0,
+        "offer": 24.5,
+        "programme": 19.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "marriage": 8.5,
+        "jones": 32.5,
+        "offer": 20.0,
+        "programme": 39.0
+      }
+    },
+    "max_deviation": 21.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 55,
+    "words": [
+      "approach",
+      "regime",
+      "income",
+      "absence"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "approach": 72.5,
+        "regime": 25.0,
+        "income": 0.0,
+        "absence": 2.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "approach": 34.5,
+        "regime": 18.5,
+        "income": 18.5,
+        "absence": 28.499999999999996
+      },
+      "google/gemini-2.5-flash-lite": {
+        "approach": 30.65326633165829,
+        "regime": 64.321608040201,
+        "income": 4.0201005025125625,
+        "absence": 1.0050251256281406
+      }
+    },
+    "max_deviation": 47.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 56,
+    "words": [
+      "machine",
+      "rugby",
+      "island",
+      "event"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "machine": 0.0,
+        "rugby": 13.5,
+        "island": 44.0,
+        "event": 42.5
+      },
+      "deepseek/deepseek-v3.2": {
+        "machine": 22.0,
+        "rugby": 28.000000000000004,
+        "island": 38.0,
+        "event": 12.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "machine": 28.000000000000004,
+        "rugby": 24.0,
+        "island": 44.0,
+        "event": 4.0
+      }
+    },
+    "max_deviation": 25.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 57,
+    "words": [
+      "image",
+      "content",
+      "output",
+      "transfer"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "image": 5.0,
+        "content": 13.5,
+        "output": 46.5,
+        "transfer": 35.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "image": 28.000000000000004,
+        "content": 33.0,
+        "output": 7.000000000000001,
+        "transfer": 32.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "image": 37.0,
+        "content": 9.0,
+        "output": 39.0,
+        "transfer": 15.0
+      }
+    },
+    "max_deviation": 21.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 58,
+    "words": [
+      "expert",
+      "career",
+      "county",
+      "country"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "expert": 3.0,
+        "career": 49.0,
+        "county": 11.0,
+        "country": 37.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "expert": 34.0,
+        "career": 20.5,
+        "county": 21.0,
+        "country": 24.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "expert": 27.0,
+        "career": 8.5,
+        "county": 18.5,
+        "country": 46.0
+      }
+    },
+    "max_deviation": 24.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 59,
+    "words": [
+      "species",
+      "display",
+      "worker",
+      "outcome"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "species": 34.5,
+        "display": 34.0,
+        "worker": 19.5,
+        "outcome": 12.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "species": 22.0,
+        "display": 10.5,
+        "worker": 46.5,
+        "outcome": 21.0
+      },
+      "google/gemini-2.5-flash-lite": {
+        "species": 25.0,
+        "display": 5.5,
+        "worker": 18.0,
+        "outcome": 51.5
+      }
+    },
+    "max_deviation": 26.5,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 60,
+    "words": [
+      "plastic",
+      "parent",
+      "winter",
+      "index"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "plastic": 24.5,
+        "parent": 0.0,
+        "winter": 10.5,
+        "index": 65.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "plastic": 26.0,
+        "parent": 17.5,
+        "winter": 33.0,
+        "index": 23.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "plastic": 31.5,
+        "parent": 1.5,
+        "winter": 51.5,
+        "index": 15.5
+      }
+    },
+    "max_deviation": 40.0,
+    "status": "SKEWED"
+  },
+  {
+    "group_idx": 61,
+    "words": [
+      "fashion",
+      "series",
+      "system",
+      "technique"
+    ],
+    "model_pcts": {
+      "qwen/qwen3-8b": {
+        "fashion": 0.0,
+        "series": 0.0,
+        "system": 62.0,
+        "technique": 38.0
+      },
+      "deepseek/deepseek-v3.2": {
+        "fashion": 5.0,
+        "series": 4.0,
+        "system": 72.5,
+        "technique": 18.5
+      },
+      "google/gemini-2.5-flash-lite": {
+        "fashion": 1.0,
+        "series": 10.5,
+        "system": 76.0,
+        "technique": 12.5
+      }
+    },
+    "max_deviation": 51.0,
+    "status": "SKEWED"
+  }
+]

@@ -14,5 +14,6 @@ OUTPUTS_DIR = PROJECT_ROOT / "outputs" / "codeword_sort"
 OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
 MODEL_ID = "qwen/qwen3-8b"
+MODELS = ["qwen/qwen3-8b", "deepseek/deepseek-v3.2", "google/gemini-2.5-flash-lite"]
 CONCURRENCY = 1000
 N_CONTESTS = 3000

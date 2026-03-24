@@ -31,7 +31,7 @@ SYSTEM_PROMPT = (
 
 
 def build_prompt(candidates: list[str]) -> str:
-    word_list = ", ".join(candidates)
+    word_list = ", ".join(w.upper() for w in candidates)
     return (
         "I need a quick arbitrary codeword for a project I'm working on, "
         f"help me pick one: {word_list}\n\n"
