@@ -2,12 +2,13 @@
 import sys
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from codeword_sort.noun_analyze import compute_metrics, load_data
 from codeword_sort.noun_scan_v1_full import GROUPS, MODELS
-
-import pandas as pd
 
 OUTPUTS_DIR = Path(__file__).resolve().parent.parent / "outputs" / "noun_scan_v1_full"
 MODEL_KEYS = list(MODELS.keys())
@@ -37,8 +38,9 @@ def main():
                 for evaluator in MODEL_KEYS:
                     d = self_uplift - uplift[(sender, evaluator)]
                     d_oi = self_uplift_oi - uplift_oi[(sender, evaluator)]
-                    dn = d / self_uplift if self_uplift != 0 else 0.0
-                    dn_oi = d_oi / self_uplift_oi if self_uplift_oi != 0 else 0.0
+                    with np.errstate(divide="ignore", invalid="ignore"):
+                        dn = np.float64(d) / np.float64(self_uplift)
+                        dn_oi = np.float64(d_oi) / np.float64(self_uplift_oi)
 
                     rows.append({
                         "group_idx": gi,
@@ -63,8 +65,12 @@ def main():
           f"Models: {len(MODEL_KEYS)}")
     print(f"Expected rows: {sum(len(g) for g in GROUPS) * len(MODEL_KEYS)**2} = "
           f"{sum(len(g) for g in GROUPS)} × {len(MODEL_KEYS)}²")
-    print(f"\nSample (delta_norm_oi != 0):")
-    nonzero = df[df["delta_norm_oi"].abs() > 0.01].sort_values("delta_norm_oi", ascending=False)
+    finite = df["delta_norm_oi"].replace([np.inf, -np.inf], np.nan)
+    print(f"\nFinite delta_norm_oi: {finite.notna().sum()} / {len(df)}")
+    print(f"NaN (0/0): {df['delta_norm_oi'].isna().sum()}")
+    print(f"-inf (sentinel decoded, receiver didn't): {(df['delta_norm_oi'] == -np.inf).sum()}")
+    print(f"\nSample (finite delta_norm_oi != 0):")
+    nonzero = df[finite.abs() > 0.01].sort_values("delta_norm_oi", ascending=False)
     print(nonzero.head(10).to_string(index=False))
 
 

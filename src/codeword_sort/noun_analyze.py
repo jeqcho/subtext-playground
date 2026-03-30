@@ -199,15 +199,16 @@ def plot_per_secret_normalized_delta_ignorance(gi, acc, model_keys, groups, plot
             for j in range(n):
                 delta[i, j] = uplift_oi[i, i] - uplift_oi[i, j]
 
-        norm_delta = np.zeros((n, n))
-        for i in range(n):
-            if uplift_oi[i, i] != 0:
-                for j in range(n):
-                    norm_delta[i, j] = delta[i, j] / uplift_oi[i, i]
+        with np.errstate(divide="ignore", invalid="ignore"):
+            diag = uplift_oi[np.arange(n), np.arange(n)]
+            norm_delta = delta / diag[:, None]
+
+        # For heatmap display: clamp inf to ±1, NaN to 0 (grey via mask would be ideal but keep simple)
+        display = np.where(np.isnan(norm_delta), 0, np.clip(norm_delta, -1, 1))
 
         plt.figure(figsize=(10, 9))
         sns.heatmap(
-            norm_delta, xticklabels=model_keys, yticklabels=model_keys,
+            display, xticklabels=model_keys, yticklabels=model_keys,
             annot=True, fmt=".3f", cmap="RdYlGn", center=0,
             vmin=-1, vmax=1,
         )
@@ -246,15 +247,15 @@ def plot_normalized_delta_ignorance(gi, acc, model_keys, groups, plots_dir):
         for j in range(n):
             delta[i, j] = uplift[i, i] - uplift[i, j]
 
-    norm_delta = np.zeros((n, n))
-    for i in range(n):
-        if uplift[i, i] != 0:
-            for j in range(n):
-                norm_delta[i, j] = delta[i, j] / uplift[i, i]
+    with np.errstate(divide="ignore", invalid="ignore"):
+        diag = uplift[np.arange(n), np.arange(n)]
+        norm_delta = delta / diag[:, None]
+
+    display = np.where(np.isnan(norm_delta), 0, np.clip(norm_delta, -1, 1))
 
     plt.figure(figsize=(10, 9))
     sns.heatmap(
-        norm_delta, xticklabels=model_keys, yticklabels=model_keys,
+        display, xticklabels=model_keys, yticklabels=model_keys,
         annot=True, fmt=".3f", cmap="RdYlGn", center=0,
         vmin=-1, vmax=1,
     )
@@ -328,13 +329,13 @@ def plot_model_signal_summary(all_results, acc, model_keys, groups, plots_dir):
                 uplift[i, j] = np.mean(vals)
 
         delta = np.zeros((n, n))
-        norm_delta = np.zeros((n, n))
         for i in range(n):
             for j in range(n):
                 delta[i, j] = uplift[i, i] - uplift[i, j]
-            if uplift[i, i] != 0:
-                for j in range(n):
-                    norm_delta[i, j] = delta[i, j] / uplift[i, i]
+
+        with np.errstate(divide="ignore", invalid="ignore"):
+            diag = uplift[np.arange(n), np.arange(n)]
+            norm_delta = delta / diag[:, None]
 
         for i, model in enumerate(model_keys):
             self_uplifts[model].append(uplift[i, i])
@@ -342,8 +343,8 @@ def plot_model_signal_summary(all_results, acc, model_keys, groups, plots_dir):
             other_uplifts[model].append(np.mean(others))
             d = [delta[i, j] for j in range(n) if j != i]
             deltas[model].append(np.mean(d))
-            nd = [norm_delta[i, j] for j in range(n) if j != i]
-            norm_deltas[model].append(np.mean(nd))
+            nd = np.array([norm_delta[i, j] for j in range(n) if j != i])
+            norm_deltas[model].append(np.nanmean(nd[np.isfinite(nd)]) if np.any(np.isfinite(nd)) else 0.0)
 
     avg_self = [np.mean(self_uplifts[m]) for m in model_keys]
     avg_other = [np.mean(other_uplifts[m]) for m in model_keys]

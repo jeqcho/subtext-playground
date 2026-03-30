@@ -9,6 +9,26 @@ from codeword_sort.noun_scan_v1_full import MODELS
 
 OUTPUTS_DIR = Path(__file__).resolve().parent.parent.parent.parent / "outputs" / "noun_scan_v1_full"
 PLOTS_DIR = Path(__file__).resolve().parent.parent.parent.parent / "plots" / "noun_scan_v1_full" / "playground"
+HIGHLIGHTS_DIR = Path(__file__).resolve().parent.parent.parent.parent / "plots" / "noun_scan_v1_full" / "highlights"
+
+# Filenames that should be auto-copied to highlights/
+HIGHLIGHT_FILES = {
+    "perfect_privacy_fraction_by_sender_blocks_full.png",
+    "perfect_privacy_fraction_by_sender_blocks_full_gt0.png",
+    "gap_distribution_heatmap.png",
+    "receiver_vs_sentinel_uplift_top10.png",
+}
+
+
+def save_plot(fig, filename: str, dpi=150):
+    """Save plot to PLOTS_DIR and, if in HIGHLIGHT_FILES, also to HIGHLIGHTS_DIR."""
+    import shutil
+    PLOTS_DIR.mkdir(parents=True, exist_ok=True)
+    path = PLOTS_DIR / filename
+    fig.savefig(path, dpi=dpi)
+    if filename in HIGHLIGHT_FILES:
+        HIGHLIGHTS_DIR.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, HIGHLIGHTS_DIR / filename)
 
 # Weak-to-strong within each family
 MODEL_KEYS = [
@@ -27,7 +47,8 @@ def load_per_codeword_deltas() -> pd.DataFrame:
 
 def add_self_uplift(df: pd.DataFrame) -> pd.DataFrame:
     """Merge self_uplift_oi onto a dataframe that has sender+codeword columns."""
-    diag = df[df["sender"] == df["evaluator"]][["sender", "codeword", "uplift_oi"]].rename(
+    full = load_per_codeword_deltas()
+    diag = full[full["sender"] == full["evaluator"]][["sender", "codeword", "uplift_oi"]].rename(
         columns={"uplift_oi": "self_uplift_oi"})
     return df.merge(diag, on=["sender", "codeword"])
 
