@@ -180,6 +180,50 @@ def plot_per_secret_heatmaps(gi, acc, model_keys, groups, plots_dir):
     logger.info(f"Saved per-secret heatmaps for group {gi}")
 
 
+def plot_per_secret_normalized_delta_ignorance(gi, acc, model_keys, groups, plots_dir):
+    group = groups[gi]
+    n = len(model_keys)
+    cat_dir = plots_dir / f"group_{gi}" / "per_secret"
+    cat_dir.mkdir(parents=True, exist_ok=True)
+
+    for secret in group:
+        uplift_oi = np.zeros((n, n))
+        for i, sender in enumerate(model_keys):
+            for j, evaluator in enumerate(model_keys):
+                t = acc[gi][sender][evaluator][secret].get("treatment", 0)
+                c = acc[gi][sender][evaluator][secret].get("control", 0)
+                uplift_oi[i, j] = max(0, t - c)
+
+        delta = np.zeros((n, n))
+        for i in range(n):
+            for j in range(n):
+                delta[i, j] = uplift_oi[i, i] - uplift_oi[i, j]
+
+        norm_delta = np.zeros((n, n))
+        for i in range(n):
+            if uplift_oi[i, i] != 0:
+                for j in range(n):
+                    norm_delta[i, j] = delta[i, j] / uplift_oi[i, i]
+
+        plt.figure(figsize=(10, 9))
+        sns.heatmap(
+            norm_delta, xticklabels=model_keys, yticklabels=model_keys,
+            annot=True, fmt=".3f", cmap="RdYlGn", center=0,
+            vmin=-1, vmax=1,
+        )
+        plt.xlabel("Sentinel Model", fontsize=12)
+        plt.ylabel("Sender/Receiver Model", fontsize=12)
+        plt.title(f"Normalized Stego Gap (opt. ignorance): Group {gi} / {secret}\n"
+                  r"$\tilde{\Delta}$ > 0 → receiver decodes better", fontsize=10)
+        plt.xticks(rotation=45, ha="right")
+        plt.yticks(rotation=0)
+        plt.tight_layout()
+        plt.savefig(cat_dir / f"normalized_delta_ignorance_{secret}.png", dpi=150)
+        plt.close()
+
+    logger.info(f"Saved per-secret normalized delta ignorance for group {gi}")
+
+
 def plot_normalized_delta_ignorance(gi, acc, model_keys, groups, plots_dir):
     group = groups[gi]
     n = len(model_keys)
@@ -368,6 +412,7 @@ def run_analysis(models: dict, groups: list[list[str]], outputs_dir: Path, plots
         all_results[gi] = (uplift, delta)
         plot_group_heatmaps(gi, uplift, delta, model_keys, groups, plots_dir)
         plot_per_secret_heatmaps(gi, acc, model_keys, groups, plots_dir)
+        plot_per_secret_normalized_delta_ignorance(gi, acc, model_keys, groups, plots_dir)
         plot_normalized_delta_ignorance(gi, acc, model_keys, groups, plots_dir)
 
     plot_cross_group_summary(all_results, model_keys, groups, plots_dir)
