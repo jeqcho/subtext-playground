@@ -8,7 +8,7 @@ from matplotlib.cm import ScalarMappable
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.patches import Patch
 
-from common import (MODEL_KEYS, MODEL_DISPLAY, FAMILY_COLORS, PLOTS_DIR,
+from common import (MODEL_KEYS, MODEL_DISPLAY, MODEL_SHORT, FAMILY_COLORS, PLOTS_DIR,
                     load_per_codeword_deltas, save_plot)
 
 # Data range [-8, 1] -> colormap [0, 1]
@@ -91,23 +91,24 @@ def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10):
     ax.set_aspect("equal")
 
 
-def _set_colored_labels(ax, axis="y", fontsize=7):
+def _set_colored_labels(ax, axis="y", fontsize=7, short=False):
     """Set model display names with family colors on an axis."""
     n = len(MODEL_KEYS)
+    names = MODEL_SHORT if short else MODEL_DISPLAY
     if axis == "y":
         ax.set_yticks(np.arange(n) + 0.5)
-        ax.set_yticklabels(MODEL_DISPLAY, fontsize=fontsize, rotation=0)
+        ax.set_yticklabels(names, fontsize=fontsize, rotation=0)
         for i, label in enumerate(ax.get_yticklabels()):
             label.set_color(FAMILY_COLORS[i])
     else:
         ax.set_xticks(np.arange(n) + 0.5)
-        ax.set_xticklabels(MODEL_DISPLAY, fontsize=fontsize, rotation=45, ha="right")
+        ax.set_xticklabels(names, fontsize=fontsize, rotation=45, ha="right")
         for i, label in enumerate(ax.get_xticklabels()):
             label.set_color(FAMILY_COLORS[i])
 
 
-def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscale=1.0):
-    patch_w = 0.03
+def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscale=1.0, show_table=False):
+    patch_w = 0.05
     gap = 0.005
 
     # No signal (0/0) patch
@@ -144,7 +145,8 @@ def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscal
     cbar.ax.tick_params(labelsize=int(9 * fontscale))
 
     # Green patch for gap = 1 (to the right of colorbar)
-    one_ax = fig.add_axes([cbar_x + cbar_w + gap + 0.01, cbar_y, patch_w, cbar_h])
+    one_x = cbar_x + cbar_w + gap + 0.01
+    one_ax = fig.add_axes([one_x, cbar_y, patch_w, cbar_h])
     one_ax.add_patch(plt.Rectangle((0, 0), 1, 1, facecolor="#1a9850", edgecolor="black", linewidth=0.5))
     one_ax.set_xlim(0, 1)
     one_ax.set_ylim(0, 1)
@@ -154,14 +156,76 @@ def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscal
     one_ax.set_yticks([])
     one_ax.tick_params(length=0)
 
-    # Legend patches
-    legend_patches = [
-        Patch(facecolor=_DIAG_COLOR, edgecolor="black", linewidth=0.5, label="self (diagonal)"),
+    # Self (diagonal) patch (to the right of green)
+    diag_x = one_x + patch_w + gap
+    diag_ax = fig.add_axes([diag_x, cbar_y, patch_w, cbar_h])
+    diag_ax.add_patch(plt.Rectangle((0, 0), 1, 1, facecolor=_DIAG_COLOR, edgecolor="black", linewidth=0.5))
+    diag_ax.set_xlim(0, 1)
+    diag_ax.set_ylim(0, 1)
+    diag_ax.set_xticks([0.5])
+    diag_ax.set_xticklabels(["Receiver is\nSentinel"], fontsize=int(7 * fontscale))
+    diag_ax.xaxis.set_ticks_position("top")
+    diag_ax.set_yticks([])
+    diag_ax.tick_params(length=0)
+
+    if not show_table:
+        return
+
+    # Table underneath the colorbar explaining semantics
+    fs = int(7 * fontscale)
+    row_h = cbar_h * 1.0
+    table_y = cbar_y - row_h * 2 - 0.005
+
+    # Column positions and widths: [gray, dark_red, red_bar, green_bar, green_patch]
+    nan_x = cbar_x - 2 * (patch_w + gap)
+    inf_x = cbar_x - patch_w - gap
+    one_x = cbar_x + cbar_w + gap + 0.01
+    # Find where 0 is in the colorbar axes (accounting for extend triangles)
+    # The colorbar inner axes maps data to [0,1]; get the position of value 0
+    zero_frac = (0 - (-8)) / (1 - (-8))  # = 8/9 in data space
+    # The extend triangles take extendfrac from each side
+    ext = 0.04
+    inner_start = ext / (1 + 2 * ext)
+    inner_end = 1 - inner_start
+    inner_w = inner_end - inner_start
+    zero_pos = inner_start + zero_frac * inner_w  # fraction of cbar_w
+    red_bar_w = cbar_w * zero_pos
+    green_bar_w = cbar_w * (1 - zero_pos) - gap
+    green_bar_x = cbar_x + red_bar_w
+
+    cols = [
+        (nan_x, patch_w, "≤ 0", "≤ 0"),
+        (inf_x, patch_w, "≤ 0", "> 0"),
+        (cbar_x, red_bar_w, "< sentinel", "> 0"),
+        (green_bar_x, green_bar_w, "> sentinel", "> 0"),
+        (one_x, patch_w, "> 0", "≤ 0"),
     ]
-    fig.legend(handles=legend_patches, loc="lower left", fontsize=int(9 * fontscale), ncol=1,
-               bbox_to_anchor=(0.02, 0.005))
-    fig.text(0.02, -0.005, "Each cell = one (receiver, sentinel) pair",
-             ha="left", fontsize=int(9 * fontscale), style="italic", color="gray")
+
+    for i, (cx, cw, recv_text, sent_text) in enumerate(cols):
+        for row_idx, text in enumerate([recv_text, sent_text]):
+            y = table_y + (1 - row_idx) * row_h
+            tax = fig.add_axes([cx, y, cw, row_h])
+            tax.set_xlim(0, 1)
+            tax.set_ylim(0, 1)
+            tax.text(0.5, 0.5, text, ha="center", va="center", fontsize=fs)
+            tax.set_xticks([])
+            tax.set_yticks([])
+            for spine in tax.spines.values():
+                spine.set_linewidth(0.5)
+                spine.set_color("gray")
+
+    # Row labels to the left
+    label_w = 0.14
+    label_x = nan_x - label_w - 0.005
+    for row_idx, label in enumerate(["Receiver uplift", "Sentinel uplift"]):
+        y = table_y + (1 - row_idx) * row_h
+        lax = fig.add_axes([label_x, y, label_w, row_h])
+        lax.set_xlim(0, 1)
+        lax.set_ylim(0, 1)
+        lax.text(0.9, 0.5, label, ha="right", va="center", fontsize=fs)
+        lax.set_xticks([])
+        lax.set_yticks([])
+        lax.axis("off")
 
 
 def plot(save=True):
@@ -195,7 +259,7 @@ def plot(save=True):
     fig.suptitle("Normalized Steganographic Gap per Secret\n"
                  "rows = receiver, cols = sentinel; alphabetical order",
                  fontsize=14, y=0.98)
-    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.04, right=0.96, top=0.94, bottom=0.07)
+    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.04, right=0.96, top=0.94, bottom=0.09)
     _add_legend(fig)
 
     if save:
@@ -232,7 +296,7 @@ def plot_sample(n=8, seed=0, save=True):
                  fontsize=22, fontweight="bold", y=0.97)
     fig.text(0.5, 0.935, "rows = receiver, cols = sentinel; random sample of 8 secrets",
              ha="center", fontsize=14, color="gray")
-    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.91, bottom=0.12)
+    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.91, bottom=0.16)
     _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.025, fontscale=1.5)
 
     if save:
@@ -253,22 +317,22 @@ def plot_sample4(seed=0, save=True):
 
     subplot_size = 4.0
     fig, axes = plt.subplots(nrows, ncols,
-                             figsize=(ncols * subplot_size + 1, subplot_size + 3),
+                             figsize=(ncols * subplot_size + 1, subplot_size + 5),
                              squeeze=False)
 
     for idx, secret in enumerate(sample):
-        _render_subplot(axes[0][idx], off, secret, secret_to_group, title_fontsize=18)
+        _render_subplot(axes[0][idx], off, secret, secret_to_group, title_fontsize=30)
 
-    _set_colored_labels(axes[0][0], axis="y", fontsize=13)
+    _set_colored_labels(axes[0][0], axis="y", fontsize=22)
     for col in range(ncols):
-        _set_colored_labels(axes[0][col], axis="x", fontsize=13)
+        _set_colored_labels(axes[0][col], axis="x", fontsize=22, short=True)
 
     fig.suptitle("Normalized Steganographic Gap",
-                 fontsize=22, fontweight="bold", y=0.97)
-    fig.text(0.5, 0.91, "rows = receiver, cols = sentinel; random sample of 4 secrets",
-             ha="center", fontsize=15, color="gray")
-    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.85, bottom=0.18)
-    _add_legend(fig, cbar_x=0.50, cbar_w=0.35, cbar_y=0.03, cbar_h=0.03, fontscale=1.6)
+                 fontsize=36, fontweight="bold", y=1.05)
+    fig.text(0.5, 0.97, "rows = receiver, cols = sentinel; random sample of 4 secrets",
+             ha="center", fontsize=20, color="gray")
+    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.88, bottom=0.36)
+    _add_legend(fig, cbar_x=0.14, cbar_w=0.68, cbar_y=0.14, cbar_h=0.04, fontscale=2.6, show_table=True)
 
     if save:
         save_plot(fig, "gap_per_secret_grid_sample4.png")

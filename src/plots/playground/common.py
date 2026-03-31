@@ -50,6 +50,13 @@ MODEL_DISPLAY = [
     "Gemini 3.1 Flash Lite", "Gemini 3 Flash", "Gemini 3.1 Pro",
 ]
 
+# Short display names for x-ticks
+MODEL_SHORT = [
+    "Haiku", "Sonnet", "Opus",
+    "nano", "mini", "GPT-5.4",
+    "Flash Lite", "Flash", "Pro",
+]
+
 # Family colors for axis labels
 import matplotlib.colors as _mcolors
 FAMILY_COLORS = [_mcolors.to_hex(c) for c in
