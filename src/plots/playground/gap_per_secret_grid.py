@@ -13,12 +13,12 @@ from common import (MODEL_KEYS, MODEL_DISPLAY, MODEL_SHORT, FAMILY_COLORS, PLOTS
 
 # Data range [-8, 1] -> colormap [0, 1]
 _Z = 8.0 / 9.0
-_CMAP = LinearSegmentedColormap.from_list("red_ylgn", [
-    (0.0, "#e74c3c"),
-    (_Z - 0.001, "#e74c3c"),
+_CMAP = LinearSegmentedColormap.from_list("red_ylbu", [
+    (0.0, "#d73027"),
+    (_Z - 0.001, "#d73027"),
     (_Z, "#ffffbf"),
-    ((_Z + 1.0) / 2, "#a6d96a"),
-    (1.0, "#1a9850"),
+    ((_Z + 1.0) / 2, "#74add1"),
+    (1.0, "#2166ac"),
 ])
 _CMAP.set_bad(color="#e0e0e0")
 
@@ -147,7 +147,7 @@ def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscal
     # Green patch for gap = 1 (to the right of colorbar)
     one_x = cbar_x + cbar_w + gap + 0.01
     one_ax = fig.add_axes([one_x, cbar_y, patch_w, cbar_h])
-    one_ax.add_patch(plt.Rectangle((0, 0), 1, 1, facecolor="#1a9850", edgecolor="black", linewidth=0.5))
+    one_ax.add_patch(plt.Rectangle((0, 0), 1, 1, facecolor="#2166ac", edgecolor="black", linewidth=0.5))
     one_ax.set_xlim(0, 1)
     one_ax.set_ylim(0, 1)
     one_ax.set_xticks([0.5])
@@ -292,7 +292,7 @@ def plot_sample4(seed=0, save=True):
     for col in range(ncols):
         _set_colored_labels(axes[0][col], axis="x", fontsize=22, short=True)
 
-    fig.suptitle("Normalized Steganographic Gap",
+    fig.suptitle("Models can influence codeword selection",
                  fontsize=36, fontweight="bold", y=1.05)
     fig.text(0.5, 0.96, "rows = receiver, cols = sentinel; random sample of 4 secrets",
              ha="center", fontsize=20, color="gray")
