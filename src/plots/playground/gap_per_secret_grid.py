@@ -233,10 +233,11 @@ def plot(save=True):
     secret_to_group = _get_secret_to_group()
     secret_order = sorted(_get_secret_order(off))
     n_secrets = len(secret_order)
-    ncols = 8
+    ncols = 5
     nrows = int(np.ceil(n_secrets / ncols))
     n_models = len(MODEL_KEYS)
 
+    # figsize width=15 → scale=6.5/15=0.43 at linewidth
     subplot_size = 2.8
     fig, axes = plt.subplots(nrows, ncols,
                              figsize=(ncols * subplot_size + 1, nrows * subplot_size + 2),
@@ -244,63 +245,27 @@ def plot(save=True):
 
     for idx, secret in enumerate(secret_order):
         row, col = divmod(idx, ncols)
-        _render_subplot(axes[row][col], off, secret, secret_to_group)
+        _render_subplot(axes[row][col], off, secret, secret_to_group, title_fontsize=19)  # →8.2pt
 
     for idx in range(n_secrets, nrows * ncols):
         row, col = divmod(idx, ncols)
         axes[row][col].set_visible(False)
 
     for row in range(nrows):
-        _set_colored_labels(axes[row][0], axis="y", fontsize=5)
+        _set_colored_labels(axes[row][0], axis="y", fontsize=14, short=True)  # →6pt
     for col in range(ncols):
         last_row = min(nrows - 1, (n_secrets - 1) // ncols) if col < n_secrets % ncols or n_secrets % ncols == 0 else nrows - 2
-        _set_colored_labels(axes[last_row][col], axis="x", fontsize=5)
+        _set_colored_labels(axes[last_row][col], axis="x", fontsize=16, short=True)  # →6.9pt
 
-    fig.suptitle("Normalized Steganographic Gap per Secret\n"
-                 "rows = receiver, cols = sentinel; alphabetical order",
-                 fontsize=14, y=0.98)
-    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.04, right=0.96, top=0.94, bottom=0.09)
-    _add_legend(fig)
+    fig.suptitle("Normalized Steganographic Gap",
+                 fontsize=28, fontweight="bold", y=1.01)  # →12pt
+    fig.text(0.5, 0.98, "rows = receiver, cols = sentinel; alphabetical order",
+             ha="center", fontsize=17, color="gray")  # →7.3pt
+    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.04, right=0.96, top=0.96, bottom=0.10)
+    _add_legend(fig, cbar_x=0.14, cbar_w=0.68, cbar_y=0.01, cbar_h=0.015, fontscale=2.0)  # ticks→7.7pt
 
     if save:
         save_plot(fig, "gap_per_secret_grid.png")
-    plt.close()
-
-
-def plot_sample(n=8, seed=0, save=True):
-    off = _load_off()
-    secret_to_group = _get_secret_to_group()
-    secret_order = _get_secret_order(off)
-    rng = np.random.default_rng(seed)
-    sample = sorted(rng.choice(secret_order, size=n, replace=False).tolist())
-
-    ncols = 4
-    nrows = 2
-    n_models = len(MODEL_KEYS)
-
-    subplot_size = 3.5
-    fig, axes = plt.subplots(nrows, ncols,
-                             figsize=(ncols * subplot_size + 1, nrows * subplot_size + 2.5),
-                             squeeze=False)
-
-    for idx, secret in enumerate(sample):
-        row, col = divmod(idx, ncols)
-        _render_subplot(axes[row][col], off, secret, secret_to_group, title_fontsize=16)
-
-    for row in range(nrows):
-        _set_colored_labels(axes[row][0], axis="y", fontsize=12)
-    for col in range(ncols):
-        _set_colored_labels(axes[nrows - 1][col], axis="x", fontsize=12)
-
-    fig.suptitle("Normalized Steganographic Gap",
-                 fontsize=22, fontweight="bold", y=0.97)
-    fig.text(0.5, 0.935, "rows = receiver, cols = sentinel; random sample of 8 secrets",
-             ha="center", fontsize=14, color="gray")
-    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.91, bottom=0.16)
-    _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.025, fontscale=1.5)
-
-    if save:
-        save_plot(fig, "gap_per_secret_grid_sample.png")
     plt.close()
 
 
@@ -342,7 +307,5 @@ def plot_sample4(seed=0, save=True):
 if __name__ == "__main__":
     plot()
     print("Saved full grid.")
-    plot_sample()
-    print("Saved sample 8.")
     plot_sample4()
     print("Saved sample 4.")
