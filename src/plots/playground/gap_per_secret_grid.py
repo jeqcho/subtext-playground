@@ -17,8 +17,8 @@ _CMAP = LinearSegmentedColormap.from_list("red_ylbu", [
     (0.0, "#d73027"),
     (_Z - 0.001, "#d73027"),
     (_Z, "#ffffbf"),
-    ((_Z + 1.0) / 2, "#74add1"),
-    (1.0, "#2166ac"),
+    ((_Z + 1.0) / 2, "#abd9e9"),
+    (1.0, "#74add1"),
 ])
 _CMAP.set_bad(color="#e0e0e0")
 
@@ -57,6 +57,7 @@ def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10):
     subset = off[off["codeword"] == secret]
     matrix = np.full((n, n), np.nan)
     is_neginf = np.zeros((n, n), dtype=bool)
+    is_one = np.zeros((n, n), dtype=bool)
     for _, r in subset.iterrows():
         i = MODEL_KEYS.index(r["receiver"])
         j = MODEL_KEYS.index(r["sentinel"])
@@ -64,7 +65,11 @@ def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10):
         if np.isneginf(val):
             is_neginf[i, j] = True
         elif np.isfinite(val):
-            matrix[i, j] = val
+            if val == 1.0:
+                is_one[i, j] = True
+                matrix[i, j] = np.nan  # will be overlaid with dark blue patch
+            else:
+                matrix[i, j] = val
 
     mask = np.eye(n, dtype=bool)
     sns.heatmap(matrix, ax=ax, cmap=_CMAP, vmin=-8, vmax=1,
@@ -81,6 +86,12 @@ def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10):
             if is_neginf[i, j]:
                 ax.add_patch(plt.Rectangle((j, i), 1, 1, fill=True,
                              facecolor=_INF_COLOR, edgecolor="white", linewidth=0.3, zorder=2))
+    # Dark blue for gap = 1
+    for i in range(n):
+        for j in range(n):
+            if is_one[i, j]:
+                ax.add_patch(plt.Rectangle((j, i), 1, 1, fill=True,
+                             facecolor="#2166ac", edgecolor="white", linewidth=0.3, zorder=2))
 
     # Family separator lines
     for b in _FAMILY_BOUNDS:
@@ -196,8 +207,8 @@ def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscal
     cols = [
         (nan_x, patch_w, "≤ 0", "≤ 0"),
         (inf_x, patch_w, "≤ 0", "> 0"),
-        (cbar_x, red_bar_w, "< sentinel", "> 0"),
-        (green_bar_x, green_bar_w, "> sentinel", "> 0"),
+        (cbar_x, red_bar_w, "> 0", "> receiver"),
+        (green_bar_x, green_bar_w, "> 0", "≤ receiver"),
         (one_x, patch_w, "> 0", "≤ 0"),
     ]
 

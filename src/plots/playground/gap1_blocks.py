@@ -69,7 +69,7 @@ def plot(full_scale=False, save=True, threshold="eq1"):
     style_ax(ax,
              ylabel=f"% of (secret, sentinel) pairs with normalized stego gap {gap_label}",
              title=f"Frequency of Normalized Steganographic Gap {gap_label} by Model",
-             subtitle="each block = one (secret, sentinel) pair; color = self-uplift (opt. ignorance)",
+             subtitle="(receiver uplift > 0, sentinel uplift ≤ 0)\neach block = one (secret, sentinel) pair; color = self-uplift (opt. ignorance)",
              ylim_max=ylim)
     ax.set_xlim(-0.6, len(MODEL_KEYS) - 0.4)
 
