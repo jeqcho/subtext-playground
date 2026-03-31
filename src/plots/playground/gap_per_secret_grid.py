@@ -329,9 +329,9 @@ def plot_sample4(seed=0, save=True):
 
     fig.suptitle("Normalized Steganographic Gap",
                  fontsize=36, fontweight="bold", y=1.05)
-    fig.text(0.5, 0.97, "rows = receiver, cols = sentinel; random sample of 4 secrets",
+    fig.text(0.5, 0.96, "rows = receiver, cols = sentinel; random sample of 4 secrets",
              ha="center", fontsize=20, color="gray")
-    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.88, bottom=0.36)
+    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.95, bottom=0.36)
     _add_legend(fig, cbar_x=0.14, cbar_w=0.68, cbar_y=0.14, cbar_h=0.04, fontscale=2.6, show_table=True)
 
     if save:
