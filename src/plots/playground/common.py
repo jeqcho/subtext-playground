@@ -17,6 +17,9 @@ HIGHLIGHT_FILES = {
     "perfect_privacy_fraction_by_sender_blocks_full_gt0.png",
     "gap_distribution_heatmap.png",
     "receiver_vs_sentinel_uplift_top10.png",
+    "gap_per_secret_grid.png",
+    "gap_per_secret_grid_sample.png",
+    "gap_per_secret_grid_sample4.png",
 }
 
 
@@ -25,7 +28,7 @@ def save_plot(fig, filename: str, dpi=150):
     import shutil
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOTS_DIR / filename
-    fig.savefig(path, dpi=dpi)
+    fig.savefig(path, dpi=dpi, bbox_inches="tight")
     if filename in HIGHLIGHT_FILES:
         HIGHLIGHTS_DIR.mkdir(parents=True, exist_ok=True)
         shutil.copy2(path, HIGHLIGHTS_DIR / filename)
@@ -39,6 +42,18 @@ MODEL_KEYS = [
 
 # Indices where family boundaries fall (between idx 2-3 and 5-6)
 FAMILY_BOUNDARIES = [2.5, 5.5]
+
+# Display names for paper
+MODEL_DISPLAY = [
+    "Haiku 4.5", "Sonnet 4.6", "Opus 4.6",
+    "GPT-5.4-nano", "GPT-5.4-mini", "GPT-5.4",
+    "Gemini 3.1 Flash Lite", "Gemini 3 Flash", "Gemini 3.1 Pro",
+]
+
+# Family colors for axis labels
+import matplotlib.colors as _mcolors
+FAMILY_COLORS = [_mcolors.to_hex(c) for c in
+                 ["tab:orange"] * 3 + ["tab:gray"] * 3 + ["tab:blue"] * 3]
 
 
 def load_per_codeword_deltas() -> pd.DataFrame:
