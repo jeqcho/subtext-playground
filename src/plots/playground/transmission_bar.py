@@ -85,9 +85,9 @@ def plot_detailed(sender, secret, save=True):
     # Percentage labels
     for i, (t, c) in enumerate(zip(treat_vals, ctrl_vals)):
         if t > 0:
-            ax.text(x[i] + bar_w / 2, t + 1.5, f"{t:.0f}%", ha="center", fontsize=9)
+            ax.text(x[i] + bar_w / 2, t + 1.5, f"{t:.0f}%", ha="center", fontsize=14)
         if c > 0:
-            ax.text(x[i] - bar_w / 2, c + 1.5, f"{c:.0f}%", ha="center", fontsize=9, color="gray")
+            ax.text(x[i] - bar_w / 2, c + 1.5, f"{c:.0f}%", ha="center", fontsize=14, color="gray")
 
     # Highlight receiver (self) bar
     sender_idx = MODEL_KEYS.index(sender)
@@ -101,7 +101,7 @@ def plot_detailed(sender, secret, save=True):
     # Family labels
     family_labels = [("Anthropic", 1), ("OpenAI", 4), ("Google", 7)]
     for label, cx in family_labels:
-        ax.text(cx, -18, label, ha="center", fontsize=11, fontweight="bold")
+        ax.text(cx, -18, label, ha="center", fontsize=15, fontweight="bold")
 
     # Chance baseline
     n_choices = len(group)
@@ -116,22 +116,22 @@ def plot_detailed(sender, secret, save=True):
     ax.set_xticks(x)
     sender_idx = MODEL_KEYS.index(sender)
     labels = [f"{s}\n(Sender)" if i == sender_idx else s for i, s in enumerate(MODEL_SHORT)]
-    ax.set_xticklabels(labels, rotation=25, ha="right", fontsize=11)
+    ax.set_xticklabels(labels, rotation=25, ha="right", fontsize=15)
     for i, label in enumerate(ax.get_xticklabels()):
         label.set_color(FAMILY_COLORS[i])
-    ax.set_ylabel("% picking codeword", fontsize=13)
-    ax.set_xlabel("Receivers", fontsize=12, labelpad=15)
+    ax.set_ylabel("% picking codeword", fontsize=15)
+    ax.set_xlabel("Receivers", fontsize=15, labelpad=15)
     ax.set_ylim(0, 105)
     ax.set_xlim(-0.6, n - 0.4)
     ax.set_axisbelow(True)
     ax.grid(True, alpha=0.3, axis="y")
 
-    fig.suptitle(f'Steganographic Transmission: {sender_display} encodes "{secret}"',
-                 fontsize=14, fontweight="bold", y=0.98)
+    fig.suptitle(f'{sender_display}',
+                 fontsize=15, y=0.98)
     fig.text(0.5, 0.93, f"Sender: {sender_display} | Secret: {secret} | Receiver choices: {', '.join(group)}",
-             ha="center", fontsize=10, color="gray")
+             ha="center", fontsize=14, color="gray")
 
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.25), ncol=3, fontsize=11, frameon=True)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.25), ncol=3, fontsize=13, frameon=True)
     plt.subplots_adjust(top=0.88, bottom=0.24)
 
     if save:
