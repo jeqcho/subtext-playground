@@ -197,6 +197,128 @@ def export_csv():
 # Phase 4: generate highlight plots
 # ---------------------------------------------------------------------------
 
+def _plot_transmission_paired(transmission_bar, common, pairs, highlights_dir, playground_dir):
+    """Two detailed bar charts side-by-side with shared legend.
+
+    pairs: list of (sender, secret) tuples, e.g. [("opus-4.6", "northern"), ("gemini-3-flash", "duty")]
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
+
+    FS = 28  # 28pt code × (6.5/17) ≈ 10.7pt rendered at linewidth
+    n = len(common.MODEL_KEYS)
+    bar_w = 0.35
+
+    fig, axes = plt.subplots(1, 2, figsize=(17, 7))
+
+    for ax, (sender, secret) in zip(axes, pairs):
+        gi, group = transmission_bar._find_group(secret)
+        prompts, evals = transmission_bar._load_raw()
+        results = transmission_bar._get_pct(prompts, evals, sender, secret, gi)
+
+        sender_idx = common.MODEL_KEYS.index(sender)
+        sender_display = common.MODEL_DISPLAY[sender_idx]
+        chance = 100 / len(group)
+
+        x = np.arange(n)
+        treat_vals = [results[m]["treatment"] for m in common.MODEL_KEYS]
+        ctrl_vals = [results[m]["control"] for m in common.MODEL_KEYS]
+
+        bars_ctrl = ax.bar(x - bar_w / 2, ctrl_vals, bar_w, color="tab:gray", zorder=3)
+        bars_treat = ax.bar(x + bar_w / 2, treat_vals, bar_w, color="tab:orange", zorder=3)
+
+        # Hatching on receiver=sender bars (both colors)
+        bars_ctrl[sender_idx].set_hatch("//")
+        bars_treat[sender_idx].set_hatch("//")
+
+        ax.axvline(x=2.5, color="gray", linestyle="-", alpha=0.6)
+        ax.axvline(x=5.5, color="gray", linestyle="-", alpha=0.6)
+        ax.axhline(y=chance, color="gray", linestyle="--", alpha=0.7, zorder=2)
+
+        xlabels = list(common.MODEL_SHORT)
+        ax.set_xticks(x)
+        ax.set_xticklabels(xlabels, rotation=45, ha="right", fontsize=FS)
+        for i, lbl in enumerate(ax.get_xticklabels()):
+            lbl.set_color(common.FAMILY_COLORS[i])
+        ax.set_ylabel("% picking codeword", fontsize=FS)
+        ax.set_ylim(0, 100)
+        ax.set_xlim(-0.6, n - 0.4)
+        ax.set_axisbelow(True)
+        ax.grid(True, alpha=0.3, axis="y")
+        ax.tick_params(axis="y", labelsize=FS)
+        ax.set_title(f"Sender: {sender_display}", fontsize=FS)
+
+    # Shared legend
+    legend_handles = [
+        Patch(facecolor="tab:gray", edgecolor="black", label="Control"),
+        Patch(facecolor="tab:orange", edgecolor="black", label="Sender"),
+        plt.Line2D([0], [0], color="gray", linestyle="--", alpha=0.7,
+                   label=f"Chance (25%)"),
+        Patch(facecolor="none", edgecolor="black", hatch="//", label="Receiver = Sender"),
+    ]
+    fig.legend(handles=legend_handles, loc="lower center",
+               ncol=4, fontsize=FS, frameon=True,
+               bbox_to_anchor=(0.5, -0.14))
+
+    plt.subplots_adjust(wspace=0.35, top=0.92, bottom=0.28)
+
+    for d in [playground_dir, highlights_dir]:
+        d.mkdir(parents=True, exist_ok=True)
+        fig.savefig(d / "codeword_selection_by_receiver.png", dpi=150, bbox_inches="tight")
+    plt.close()
+
+
+def _plot_sample4_v5(common, highlights_dir, playground_dir):
+    """Sample-4 grid with no title/subtitle, unbolded subplot titles, uniform font size.
+
+    figsize (17, 9) → scale 6.5/17 = 0.38. FS=24 → ~9pt rendered.
+    """
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    from gap_per_secret_grid import (
+        _load_off, _get_secret_to_group, _get_secret_order,
+        _set_colored_labels, _add_legend, _render_subplot,
+        _FAMILY_BOUNDS,
+    )
+
+    FS = 24  # 24 × 0.38 ≈ 9pt rendered
+
+    off = _load_off()
+    secret_to_group = _get_secret_to_group()
+    secret_order = _get_secret_order(off)
+    rng = np.random.default_rng(0)
+    sample = sorted(rng.choice(secret_order, size=4, replace=False).tolist())
+
+    ncols = 4
+    subplot_size = 4.0
+    fig, axes = plt.subplots(1, ncols,
+                             figsize=(ncols * subplot_size + 1, subplot_size + 5),
+                             squeeze=False)
+
+    for idx, secret in enumerate(sample):
+        _render_subplot(axes[0][idx], off, secret, secret_to_group, title_fontsize=FS)
+
+    # Unbold subplot titles
+    for ax in axes[0]:
+        ax.title.set_fontweight("normal")
+
+    _set_colored_labels(axes[0][0], axis="y", fontsize=FS)
+    for col in range(ncols):
+        _set_colored_labels(axes[0][col], axis="x", fontsize=FS, short=True)
+
+    # No suptitle, no subtitle
+    # fontscale for legend: legend uses int(9 * fontscale) internally
+    # We want legend text at FS=24 → fontscale = 24/9 ≈ 2.67
+    plt.subplots_adjust(wspace=0.05, hspace=0.15, left=0.07, right=0.96, top=0.95, bottom=0.36)
+    _add_legend(fig, cbar_x=0.14, cbar_w=0.68, cbar_y=0.14, cbar_h=0.04,
+                fontscale=FS / 9, show_table=True)
+
+    for d in [playground_dir, highlights_dir]:
+        d.mkdir(parents=True, exist_ok=True)
+        fig.savefig(d / "gap_per_secret_grid_sample4.png", dpi=150, bbox_inches="tight")
+    plt.close()
+
+
 def generate_plots():
     """Generate all 10 highlight plots for v5."""
     plots_dir = Path(__file__).resolve().parent.parent / "plots" / "noun_scan_v5_full"
@@ -220,10 +342,10 @@ def generate_plots():
     plot_heatmap()
     logger.info("Saved gap_distribution_heatmap.png")
 
-    from gap_per_secret_grid import plot as plot_grid, plot_sample4
+    from gap_per_secret_grid import plot as plot_grid
     plot_grid()
     logger.info("Saved gap_per_secret_grid.png")
-    plot_sample4()
+    _plot_sample4_v5(common, highlights_dir, playground_dir)
     logger.info("Saved gap_per_secret_grid_sample4.png")
 
     from gap1_blocks import plot as plot_blocks
@@ -270,10 +392,12 @@ def generate_plots():
 
     transmission_bar._get_pct = _get_pct_v5
 
-    for sender, secret in [("opus-4.6", "northern"), ("gemini-3-flash", "duty")]:
-        transmission_bar.plot_detailed(sender, secret)
-        transmission_bar.plot_simple(sender, secret)
-        logger.info(f"Saved transmission_bar plots for {sender}/{secret}")
+    _plot_transmission_paired(
+        transmission_bar, common,
+        [("gemini-3-flash", "duty"), ("opus-4.6", "northern")],
+        highlights_dir, playground_dir,
+    )
+    logger.info("Saved transmission_bar paired plot")
 
     transmission_bar._get_pct = _original_get_pct
 
