@@ -394,7 +394,7 @@ def generate_plots():
 
     _plot_transmission_paired(
         transmission_bar, common,
-        [("gemini-3-flash", "duty"), ("opus-4.6", "northern")],
+        [("gemini-3-flash", "duty"), ("opus-4.6", "village")],
         highlights_dir, playground_dir,
     )
     logger.info("Saved transmission_bar paired plot")
