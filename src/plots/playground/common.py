@@ -19,6 +19,10 @@ HIGHLIGHT_FILES = {
     "receiver_vs_sentinel_uplift_top10.png",
     "gap_per_secret_grid.png",
     "gap_per_secret_grid_sample4.png",
+    "gap_per_secret_grid_raw.png",
+    "gap_per_secret_grid_raw_sample4.png",
+    "gap_mean_heatmap_raw.png",
+    "gap_mean_heatmap_normed.png",
 }
 
 
