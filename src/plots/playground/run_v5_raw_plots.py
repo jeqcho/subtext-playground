@@ -25,3 +25,23 @@ print("Saved gap_mean_heatmap_raw.png (v5)")
 import gap_mean_heatmap_normed
 gap_mean_heatmap_normed.plot()
 print("Saved gap_mean_heatmap_normed.png (v5)")
+
+import gap_mean_heatmap_raw_maxmean
+gap_mean_heatmap_raw_maxmean.plot()
+print("Saved gap_mean_heatmap_raw_maxmean.png (v5)")
+
+import gap_mean_heatmap_normed_maxmean
+gap_mean_heatmap_normed_maxmean.plot()
+print("Saved gap_mean_heatmap_normed_maxmean.png (v5)")
+
+import gap_mean_heatmap_baseline
+gap_mean_heatmap_baseline.plot_raw()
+print("Saved gap_mean_heatmap_raw_maxmean_baseline.png (v5)")
+gap_mean_heatmap_baseline.plot_normed()
+print("Saved gap_mean_heatmap_normed_maxmean_baseline.png (v5)")
+
+import gap_mean_heatmap_nooi
+gap_mean_heatmap_nooi.plot_raw()
+print("Saved gap_mean_heatmap_raw_nooi.png (v5)")
+gap_mean_heatmap_nooi.plot_normed()
+print("Saved gap_mean_heatmap_normed_nooi.png (v5)")

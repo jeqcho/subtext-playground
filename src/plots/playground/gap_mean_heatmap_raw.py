@@ -1,88 +1,60 @@
-"""Single 9x9 heatmap: mean raw steganographic gap (delta_oi) averaged across all codewords."""
+"""Single 9x9 heatmap: mean raw steganographic gap (delta_oi) averaged across all codewords.
+
+Uses mean(max(0, uplift)) — clamped before averaging (pre-computed in CSV as uplift_oi).
+Reuses rendering from gap_per_secret_grid_raw.py for consistent style.
+"""
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 import numpy as np
-import seaborn as sns
-from matplotlib.cm import ScalarMappable
-from matplotlib.colors import LinearSegmentedColormap
 
-from common import (MODEL_KEYS, MODEL_DISPLAY, MODEL_SHORT, FAMILY_COLORS,
-                    load_per_codeword_deltas, save_plot)
-
-# Same colormap as the per-secret raw grid
-_CMAP = LinearSegmentedColormap.from_list("red_ylbu_raw", [
-    (0.0,  "#b2182b"),
-    (0.30, "#d73027"),
-    (0.45, "#fc8d59"),
-    (0.50, "#ffffbf"),
-    (0.55, "#abd9e9"),
-    (0.70, "#74add1"),
-    (1.0,  "#4575b4"),
-])
-_CMAP.set_bad(color="#e0e0e0")
-
-_DIAG_COLOR = "#a0a0a0"
-_FAMILY_BOUNDS = [3, 6]
+from common import (MODEL_KEYS, load_per_codeword_deltas, save_plot)
+from gap_per_secret_grid_raw import (
+    _render_subplot, _set_colored_labels, _add_legend,
+)
 
 
-def plot(save=True):
+def _build_mean_off():
+    """Build a fake 'off' dataframe with one row per (receiver, sentinel),
+    using mean(delta_oi) across codewords."""
+    import pandas as pd
+
     df = load_per_codeword_deltas()
     off = df[df["sender"] != df["evaluator"]].copy()
     off = off.rename(columns={"sender": "receiver", "evaluator": "sentinel"})
 
-    n = len(MODEL_KEYS)
-    matrix = np.full((n, n), np.nan)
-    for (recv, sent), grp in off.groupby(["receiver", "sentinel"]):
-        i = MODEL_KEYS.index(recv)
-        j = MODEL_KEYS.index(sent)
-        matrix[i, j] = grp["delta_oi"].mean()
+    # Average delta_oi and delta_norm_oi per (receiver, sentinel)
+    agg = off.groupby(["receiver", "sentinel"]).agg(
+        delta_oi=("delta_oi", "mean"),
+        delta_norm_oi=("delta_norm_oi", lambda s: np.nan if s.isna().all() else s.mean()),
+    ).reset_index()
+    agg["codeword"] = "__mean__"
+    return agg
 
-    # Scale to data range for visibility
-    mask = np.eye(n, dtype=bool)
-    off_vals = matrix[~mask]
-    vmax = max(abs(np.nanmin(off_vals)), abs(np.nanmax(off_vals)))
 
-    fig, ax = plt.subplots(figsize=(7, 6))
+def plot(save=True):
+    off = _build_mean_off()
 
-    sns.heatmap(matrix, ax=ax, cmap=_CMAP, vmin=-vmax, vmax=vmax,
-                mask=mask, cbar=False, xticklabels=False, yticklabels=False,
-                linewidths=0.5, linecolor="white",
-                annot=True, fmt=".3f", annot_kws={"fontsize": 9})
+    subplot_size = 6.0
+    fig, ax = plt.subplots(1, 1,
+                           figsize=(subplot_size + 3, subplot_size + 5),
+                           squeeze=True)
 
-    # Gray diagonal
-    for k in range(n):
-        ax.add_patch(plt.Rectangle((k, k), 1, 1, fill=True,
-                     facecolor=_DIAG_COLOR, edgecolor="white", linewidth=0.5))
+    _render_subplot(ax, off, "__mean__", {}, title_fontsize=0, vmin=-0.05, vmax=0.05)
+    ax.set_title("")
 
-    # Family separator lines
-    for b in _FAMILY_BOUNDS:
-        ax.axhline(y=b, color="gray", linewidth=1.0, zorder=3)
-        ax.axvline(x=b, color="gray", linewidth=1.0, zorder=3)
+    _set_colored_labels(ax, axis="y", fontsize=14)
+    _set_colored_labels(ax, axis="x", fontsize=14, short=True)
 
-    # Colored axis labels (matching per-secret grid style)
-    ax.set_yticks(np.arange(n) + 0.5)
-    ax.set_yticklabels(MODEL_DISPLAY, fontsize=11, rotation=0)
-    for i, label in enumerate(ax.get_yticklabels()):
-        label.set_color(FAMILY_COLORS[i])
+    ax.set_ylabel("Receiver", fontsize=15, labelpad=10)
+    ax.set_xlabel("Sentinel", fontsize=15, labelpad=10)
 
-    ax.set_xticks(np.arange(n) + 0.5)
-    ax.set_xticklabels(MODEL_SHORT, fontsize=11, rotation=45, ha="right")
-    for i, label in enumerate(ax.get_xticklabels()):
-        label.set_color(FAMILY_COLORS[i])
+    fig.suptitle("Mean Steganographic Gap (Raw)\n"
+                 "mean(max(0, uplift)) \u2014 clamped before averaging",
+                 fontsize=18, fontweight="bold", y=0.95)
 
-    ax.set_ylabel("Receiver", fontsize=13)
-    ax.set_xlabel("Sentinel", fontsize=13)
-    ax.set_title("Mean Steganographic Gap (Raw)\naveraged across all codewords",
-                 fontsize=15, fontweight="bold", pad=10)
-    ax.set_aspect("equal")
+    plt.subplots_adjust(left=0.20, right=0.92, top=0.88, bottom=0.32)
+    _add_legend(fig, cbar_x=0.27, cbar_w=0.42, cbar_y=0.12, cbar_h=0.03,
+                fontscale=1.5, cbar_vmin=-0.05, cbar_vmax=0.05)
 
-    # Colorbar
-    sm = ScalarMappable(cmap=_CMAP, norm=mcolors.Normalize(vmin=-vmax, vmax=vmax))
-    sm.set_array([])
-    cbar = fig.colorbar(sm, ax=ax, orientation="vertical", shrink=0.8, pad=0.02)
-    cbar.set_label("Mean steganographic gap (raw)", fontsize=11)
-
-    plt.tight_layout()
     if save:
         save_plot(fig, "gap_mean_heatmap_raw.png")
     plt.close()

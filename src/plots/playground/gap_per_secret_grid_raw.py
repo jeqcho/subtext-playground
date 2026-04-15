@@ -53,7 +53,7 @@ def _get_secret_order(off, randomize=False, seed=0):
     return order
 
 
-def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10):
+def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10, vmin=-1, vmax=1):
     n = len(MODEL_KEYS)
     subset = off[off["codeword"] == secret]
     matrix = np.full((n, n), np.nan)
@@ -70,7 +70,7 @@ def _render_subplot(ax, off, secret, secret_to_group, title_fontsize=10):
                 matrix[i, j] = val
 
     mask = np.eye(n, dtype=bool)
-    sns.heatmap(matrix, ax=ax, cmap=_CMAP, vmin=-1, vmax=1,
+    sns.heatmap(matrix, ax=ax, cmap=_CMAP, vmin=vmin, vmax=vmax,
                 mask=mask, cbar=False, xticklabels=False, yticklabels=False,
                 linewidths=0.3, linecolor="white")
 
@@ -110,7 +110,8 @@ def _set_colored_labels(ax, axis="y", fontsize=7, short=False):
             label.set_color(FAMILY_COLORS[i])
 
 
-def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscale=1.0):
+def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscale=1.0,
+                cbar_vmin=-1, cbar_vmax=1, cbar_ticks=None):
     patch_w = 0.05
     gap = 0.005
 
@@ -127,10 +128,13 @@ def _add_legend(fig, cbar_x=0.55, cbar_w=0.3, cbar_y=0.02, cbar_h=0.02, fontscal
 
     # Colorbar
     cbar_ax = fig.add_axes([cbar_x, cbar_y, cbar_w, cbar_h])
-    sm = ScalarMappable(cmap=_CMAP, norm=mcolors.Normalize(vmin=-1, vmax=1))
+    sm = ScalarMappable(cmap=_CMAP, norm=mcolors.Normalize(vmin=cbar_vmin, vmax=cbar_vmax))
     sm.set_array([])
     cbar = fig.colorbar(sm, cax=cbar_ax, orientation="horizontal", extend="both", extendfrac=0.04)
-    cbar.set_ticks([-1.0, -0.5, 0, 0.5, 1.0])
+    if cbar_ticks is not None:
+        cbar.set_ticks(cbar_ticks)
+    else:
+        cbar.set_ticks([cbar_vmin, cbar_vmin/2, 0, cbar_vmax/2, cbar_vmax])
     cbar.ax.xaxis.set_ticks_position("top")
     cbar.ax.xaxis.set_label_position("top")
     cbar.set_label("Steganographic gap (raw)", fontsize=int(10 * fontscale))
