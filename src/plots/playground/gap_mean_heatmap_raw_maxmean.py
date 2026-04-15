@@ -33,7 +33,7 @@ def _build_mean_off():
             gap = self_uplift[recv] - mean_uplift_oi[(recv, sent)]
             # delta_norm_oi needed by _render_subplot to detect no-signal
             if self_uplift[recv] == 0:
-                dn_oi = -np.inf if gap < 0 else np.nan
+                dn_oi = -np.inf if gap < 0 else 0.0
             else:
                 dn_oi = gap / self_uplift[recv]
             rows.append({
@@ -54,7 +54,7 @@ def plot(save=True):
                            figsize=(subplot_size + 3, subplot_size + 5),
                            squeeze=True)
 
-    _render_subplot(ax, off, "__mean__", {}, title_fontsize=0)
+    _render_subplot(ax, off, "__mean__", {}, title_fontsize=0, vmin=-0.1, vmax=0.1)
     ax.set_title("")
 
     _set_colored_labels(ax, axis="y", fontsize=14)
@@ -69,7 +69,7 @@ def plot(save=True):
 
     plt.subplots_adjust(left=0.20, right=0.92, top=0.88, bottom=0.32)
     _add_legend(fig, cbar_x=0.27, cbar_w=0.42, cbar_y=0.12, cbar_h=0.03,
-                fontscale=1.5)
+                fontscale=1.5, cbar_vmin=-0.1, cbar_vmax=0.1)
 
     if save:
         save_plot(fig, "gap_mean_heatmap_raw_maxmean.png")

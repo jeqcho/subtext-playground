@@ -41,7 +41,7 @@ def _build_raw_off():
             # (needed by _render_raw to detect no-signal)
             su = self_uplift[recv]
             if su == 0:
-                dn = np.nan
+                dn = 0.0
             else:
                 dn = gap / su
             rows.append({

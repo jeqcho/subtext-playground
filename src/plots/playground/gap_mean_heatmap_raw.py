@@ -24,7 +24,7 @@ def _build_mean_off():
     # Average delta_oi and delta_norm_oi per (receiver, sentinel)
     agg = off.groupby(["receiver", "sentinel"]).agg(
         delta_oi=("delta_oi", "mean"),
-        delta_norm_oi=("delta_norm_oi", lambda s: np.nan if s.isna().all() else s.mean()),
+        delta_norm_oi=("delta_norm_oi", lambda s: 0.0 if s.isna().all() else s.mean()),
     ).reset_index()
     agg["codeword"] = "__mean__"
     return agg
